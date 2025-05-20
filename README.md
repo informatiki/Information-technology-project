@@ -1,68 +1,51 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Report</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#report">Report</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-}
+    <section id="hero">
+        <h1>Exploring Cultural Bonds: Russia and Italy</h1>
+        <p>Uncovering the rich cultural connections between two nations.</p>
+        <a href="#report" class="cta">Read the Report</a>
+    </section>
 
-header nav ul {
-    list-style: none;
-    padding: 0;
-}
+    <section id="report">
+        <h2>Methodology</h2>
+        <p>Our project delves into the cultural ties between Russia and Italy...</p>
+        <!-- Add more content as needed -->
+    </section>
 
-header nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
+    <section id="team">
+        <h2>Our Team</h2>
+        <div class="team-member">
+            <img src="kristina.jpg" alt="Kristina Evstigneeva">
+            <p>Kristina Evstigneeva - Project Lead</p>
+        </div>
+        <!-- Add other team members -->
+    </section>
 
-header nav ul li a {
-    color: white;
-    text-decoration: none;
-}
+    <footer id="contact">
+        <p>&copy; 2025 ChatGPT Report</p>
+        <p>Email: contact@chatgptreport.com</p>
+    </footer>
 
-#hero {
-    background-color: #007BFF;
-    color: white;
-    padding: 50px 0;
-    text-align: center;
-}
-
-#hero .cta {
-    background-color: #ff6600;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-#report, #team, footer {
-    padding: 20px;
-    margin: 20px;
-    background-color: white;
-    border-radius: 5px;
-}
-
-#team .team-member {
-    display: inline-block;
-    width: 30%;
-    text-align: center;
-    margin: 10px;
-}
-
-#team .team-member img {
-    width: 100%;
-    border-radius: 50%;
-}
-
-footer {
-    text-align: center;
-    background-color: #333;
-    color: white;
-}
+    <script src="scripts.js"></script>
+</body>
+</html>
