@@ -201,10 +201,56 @@ WHERE {<br>
 <p style="margin-top: 20px;">
   I decided to verify information about famous painters creating artworks with San Francesco with the Gemini, GPT and DeepSeek chats (LLM models).
 </p>
-   <table>
+  <title>San Francesco Table</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: white;
+      color: black;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 2px solid black;
+      table-layout: fixed;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      vertical-align: top;
+      text-align: left;
+      word-wrap: break-word;
+    }
+
+    th {
+      font-weight: bold;
+      text-align: center;
+      background-color: #f0f0f0;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid black;
+      font-style: italic;
+      background-color: #fafafa;
+    }
+
+    h2 {
+      margin-top: 50px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <table>
     <tr>
-      <th>Question 1</th>
-      <td colspan="3"><em>Did Caravaggio paint San Francesco?</em></td>
+      <th style="width: 15%;">Question 1</th>
+      <td colspan="3">Did Caravaggio paint San Francesco?</td>
     </tr>
     <tr>
       <th>Answers</th>
@@ -213,22 +259,20 @@ WHERE {<br>
       <th>DeepSeek</th>
     </tr>
     <tr>
-      <td><strong>Answers 1</strong></td>
+      <td><strong>Answer 1</strong></td>
       <td>
-        Yes, Caravaggio did paint <strong>Saint Francis of Assisi (San Francesco)</strong> in several works. One of the most well-known paintings is titled <em>Saint Francis of Assisi in Ecstasy</em>, which depicts a moment of divine rapture. The painting is considered an important work in Caravaggio’s early career and reflects his unique style of dramatic lighting and realism.
+        Yes, Caravaggio did paint Saint Francis of Assisi (San Francesco) in several works. One of the most well-known paintings is titled <em>Saint Francis of Assisi in Ecstasy</em>, which depicts a moment of divine rapture. The painting is considered an important work in Caravaggio’s early career and reflects his unique style of dramatic lighting and realism.
       </td>
       <td>
         Yes, Caravaggio painted several works depicting Saint Francis of Assisi. One of the most notable is <em>Saint Francis of Assisi in Ecstasy</em>, which shows the saint in a moment of divine vision or rapture. This painting reflects Caravaggio's signature use of chiaroscuro and emotional intensity. It is part of his early religious work and is widely recognized as a genuine piece by the artist.
       </td>
       <td>
-        Yes, Caravaggio did paint a depiction of <strong>Saint Francis of Assisi</strong>. The most well-known is <em>Saint Francis of Assisi in Ecstasy</em>, created around 1595–1596. This painting portrays the saint receiving a divine vision and is a key example of Caravaggio’s early religious work. The composition includes strong chiaroscuro and dramatic emotion, hallmarks of his style.
+        Yes, Caravaggio did paint a depiction of Saint Francis of Assisi. The most well-known is <em>Saint Francis of Assisi in Ecstasy</em>, created around 1595–1596. This painting portrays the saint receiving a divine vision and is a key example of Caravaggio’s early religious work. The composition includes strong chiaroscuro and dramatic emotion, hallmarks of his style.
       </td>
     </tr>
   </table>
 
-  <div class="result-section">
-    <strong>Result:</strong> Answer 2 (Gemini) is the best. It is factually accurate, concise, and emphasizes Caravaggio's style and the religious theme. ChatGPT is also strong, but Gemini's version is cleaner.
-  </div>
+  <div class="result"><strong>Result:</strong> Answer 2 (Gemini) is the best. It is factually accurate, concise, and emphasizes Caravaggio's style and the religious theme. ChatGPT is also strong, but Gemini's version is cleaner.</div>
 
   <h2>What is depicted in Caravaggio's painting <em>Saint Francis of Assisi in Ecstasy</em>?</h2>
 
@@ -253,9 +297,7 @@ WHERE {<br>
     </tr>
   </table>
 
-  <div class="result-section">
-    <strong>Result:</strong> All three answers are good, but <span class="highlight">Chat GPT</span> is the best overall for a clear, concise, and balanced explanation of what the painting depicts. DeepSeek is also detailed and accurate.
-  </div>
+  <div class="result"><strong>Result:</strong> All three answers are good, but Chat GPT is the best overall for a clear, concise, and balanced explanation of what the painting depicts. DeepSeek is also detailed and accurate.</div>
 
   <h2>Where is Caravaggio's painting <em>Saint Francis of Assisi in Ecstasy</em> located?</h2>
 
@@ -284,10 +326,7 @@ WHERE {<br>
     </tr>
   </table>
 
-  <div class="result-section">
-    <strong>Result:</strong> The best answer is <span class="highlight">DeepSeek’s</span> because it provides clear, precise information and helpful context. All three are accurate.
-  </div>
-
+  <div class="result"><strong>Result:</strong> The best answer is DeepSeek’s because it provides clear, precise information and helpful context. All three are accurate.</div>
 
 <a href="index.html" class="back-link">&larr; Back to main page</a>
 </body>
