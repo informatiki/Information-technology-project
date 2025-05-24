@@ -105,7 +105,7 @@ ORDER BY ?creationDate
 </pre>
       </td>
       <td style="border: 1px solid #ccc; padding: 10px; text-align: justify;">
-        This query was created to retrieve titles of Maria Maddalena artworks and their dates of creation. It also provided information on the artists.
+        This query was created to retrieve titles of Maria Maddalena artworks and their dates of creation. It also provided information on the artists.<br>
      
   <a href="https://dati.cultura.gov.it/sparql?default-graph-uri=&query=PREFIX+arco%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Farco%2F%3E%0D%0APREFIX+a-cd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fcontext-description%2F%3E%0D%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0A%0D%0ASELECT+DISTINCT+%3Fartwork+%3Ftitle+%3FcreationDate%0D%0AWHERE+%7B%0D%0A++%3Fartwork+a+arco%3AHistoricOrArtisticProperty+%3B%0D%0A+++++++++++rdfs%3Alabel+%3Ftitle+%3B%0D%0A+++++++++++a-cd%3AhasSubject+%3Fsubject+.%0D%0A++%0D%0A++%3Fsubject+rdfs%3Alabel+%3FsubjectLabel+.%0D%0A++FILTER%28REGEX%28%3FsubjectLabel%2C+%22Maria+Maddalena%7CMaddalene%7CMaría+Maddalena%22%2C+%22i%22%29%29%0D%0A%0D%0A++OPTIONAL+%7B+%3Fartwork+a-cd%3AhasDate+%3FcreationDate+.+%7D%0D%0A%7D%0D%0AORDER+BY+%3FcreationDate%0D%0A&format=text%2Fhtml&timeout=0&signal_void=on" target="_blank">Results</a>
       </td>
