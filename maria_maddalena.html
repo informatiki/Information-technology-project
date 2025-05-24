@@ -79,7 +79,7 @@ WHERE {
 </pre>
       </td>
       <td style="border: 1px solid #ccc; padding: 10px; text-align: justify;">
-        The SPARQL request was supposed to find how many paintings of Maria Magdalena are there in the ArCo. According to the ArCo, there are 5219 artworks with this Biblical figure. The answer seems to be accurate.
+        The SPARQL request I used herewas supposed to find how many paintings of Maria Magdalena are there in the ArCo. According to the ArCo, there are 5219 artworks with this Biblical figure. The answer seems to be accurate.
       </td>
     </tr>
 <a href="https://dati.cultura.gov.it/sparql?default-graph-uri=&query=PREFIX+arco%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Farco%2F%3E%0D%0APREFIX+a-cd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fcontext-description%2F%3E%0D%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0A%0D%0ASELECT+%28COUNT%28DISTINCT+%3Fartwork%29+AS+%3FcountMagdalene%29%0D%0AWHERE+%7B%0D%0A++%3Fartwork+a+arco%3AHistoricOrArtisticProperty+%3B%0D%0A+++++++++++a-cd%3AhasSubject+%3Fsubject+.%0D%0A++%0D%0A++%3Fsubject+rdfs%3Alabel+%3FsubjectLabel+.%0D%0A++FILTER%28REGEX%28%3FsubjectLabel%2C+%22Maria+Maddalena%7CMaddalene%7CMaría+Maddalena%22%2C+%22i%22%29%29%0D%0A%7D%0D%0A%0D%0A&format=text%2Fhtml&timeout=0&signal_void=on" target="_blank" rel="noopener noreferrer">Results</a>
