@@ -126,6 +126,8 @@ WHERE {<br>
       <td style="border: 1px solid #ccc; padding: 8px;">
         I decided to find information about the number of artworks with San Francesco in the ArCo ontology.<br>
         It says there are 20,542 artworks devoted to San Francesco. It looks truthful.
+        <a href="https://dati.cultura.gov.it/sparql?default-graph-uri=&query=PREFIX+arco%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Farco%2F%3E%0D%0APREFIX+a-cd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fcontext-description%2F%3E%0D%0APREFIX+a-dd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fdenotative-description%2F%3E%0D%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0APREFIX+crm%3A+%3Chttp%3A%2F%2Fwww.cidoc-crm.org%2Fcidoc-crm%2F%3E%0D%0ASELECT+%28COUNT%28DISTINCT+%3Fartwork%29+AS+%3Fcount%29%0D%0AWHERE+%7B%0D%0A++%3Fartwork+a+arco%3AHistoricOrArtisticProperty+%3B+rdfs%3Alabel+%3Ftitle+.%0D%0A++%7B+%3Fartwork+a-cd%3AhasSubject+%3Fsubject+.%0D%0A++++%3Fsubject+rdfs%3Alabel+%3FsubjectLabel+.%0D%0A++++FILTER%28REGEX%28%3FsubjectLabel%2C+%22Francesco%7CFrancis%7C%D0%A4%D1%80%D0%B0%D0%BD%D1%86%D0%B8%D1%81%D0%BA%7Cstigmata%7CAssisi%22%2C+%22i%22%29%29+%7D+UNION+%7B+%3Fartwork+rdfs%3Acomment+%3Fcomment+.%0D%0A++++FILTER%28REGEX%28%3Fcomment%2C+%22Francesco%7CFrancis%7C%D0%A4%D1%80%D0%B0%D0%BD%D1%86%D0%B8%D1%81%D0%BA%22%2C+%22i%22%29%29+%7D%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on" target="_blank">RESULT2</a></td>
+
       </td>
     </tr>
 
@@ -158,6 +160,7 @@ ASK {<br>
       <td style="border: 1px solid #ccc; padding: 8px;">
         I made a SPARQL query to check whether ArCo contains information about Caravaggio’s painting San Francesco, using the prompting technique "true/false." It responded that such a painting is not included, even though it is one of the most famous artworks featuring Saint Francis.<br>
         With this information we can enrich the ontology.
+ <a href="https://dati.cultura.gov.it/sparql?default-graph-uri=&query=PREFIX+arco%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Farco%2F%3E%0D%0APREFIX+a-cd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fcontext-description%2F%3E%0D%0APREFIX+a-dd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fdenotative-description%2F%3E%0D%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0APREFIX+crm%3A+%3Chttp%3A%2F%2Fwww.cidoc-crm.org%2Fcidoc-crm%2F%3E%0D%0AASK+%7B...%7D&format=text%2Fhtml&timeout=0&signal_void=on" target="_blank">RESULT3</a></td>
       </td>
     </tr>
 
@@ -189,6 +192,7 @@ WHERE {<br>
         I made a SPARQL query using the prompting technique "either/or" and asked which figure has more artworks in ArCo: Saint Francis or Mary Magdalene.<br>
         It returned the following result: 19,154 with San Francesco and 5,698 with Maria Maddalena.<br>
         This answer seems true.
+    <a href="https://dati.cultura.gov.it/sparql?default-graph-uri=&query=...&format=text%2Fhtml&timeout=0&signal_void=on" target="_blank">RESULT4</a></td>
       </td>
     </tr>
   </tbody>
