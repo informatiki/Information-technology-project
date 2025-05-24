@@ -292,29 +292,7 @@ WHERE {
 Thus, we can enhance the ontology by creating new triplets to link the artwork to its exact location, meaning not only the city but also an address.
 </p>
 
-<p><strong>Triplet:</strong></p>
-<pre><code>@prefix arco: &lt;http://data.cultura.gov.it/ontology/arco/&gt; .
-@prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .
-@prefix schema: &lt;http://schema.org/&gt; .
-@prefix ex: &lt;http://example.org/resource/&gt; .
-
-ex:SantaMariaMaddalena_ReniSchool a arco:VisualItem ;
-    dcterms:title "Santa Maria Maddalena"@it ;
-    dcterms:creator ex:GuidoReniSchool ;
-    dcterms:date "1650-1700"^^xsd:string ;
-    arco:hasCurrentLocation ex:GalleriaCorsini_Rome .
-
-ex:GuidoReniSchool a arco:Agent ;
-    dcterms:name "School of Guido Reni"@en .
-
-ex:GalleriaCorsini_Rome a arco:Place ;
-    schema:name "Galleria Corsini"@it ;
-    schema:address [
-        schema:streetAddress "Via della Lungara 10" ;
-        schema:addressLocality "Roma" ;
-        schema:addressCountry "IT"
-    ] .
-</code></pre>
+<a href="https://github.com/informatiki/Information-technology-project/blob/main/santa_maria_maddalena.ttl" target="_blank">Triplet</a>
 
 <p>
 This allows us to generate additional triplets for other artworks, further enhancing the ontology.
