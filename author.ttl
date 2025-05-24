@@ -1,0 +1,21 @@
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://example.org/> .
+
+<https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500704524>
+    a-cd:hasSubject ex:SaintFrancisInEcstasy ;
+    a-cd:hasSubject ex:SaintFrancisInMeditation ;
+    arco:creator ex:Caravaggio .
+
+ex:SaintFrancisInEcstasy
+    a a-cd:Subject ;
+    rdfs:label "Saint Francis of Assisi in Ecstasy" .
+
+ex:SaintFrancisInMeditation
+    a a-cd:Subject ;
+    rdfs:label "Saint Francis in Meditation" .
+
+ex:Caravaggio
+    a arco:Person ;
+    rdfs:label "Michelangelo Merisi da Caravaggio" .
