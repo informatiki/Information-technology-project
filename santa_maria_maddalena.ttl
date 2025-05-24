@@ -1,0 +1,22 @@
+@prefix arco: <http://data.cultura.gov.it/ontology/arco/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@prefix ex: <http://example.org/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:SantaMariaMaddalena_ReniSchool a arco:VisualItem ;
+    dcterms:title "Santa Maria Maddalena"@it ;
+    dcterms:creator ex:GuidoReniSchool ;
+    dcterms:date "1650-1700"^^xsd:string ;
+    arco:hasCurrentLocation ex:GalleriaCorsini_Rome .
+
+ex:GuidoReniSchool a arco:Agent ;
+    dcterms:name "School of Guido Reni"@en .
+
+ex:GalleriaCorsini_Rome a arco:Place ;
+    schema:name "Galleria Corsini"@it ;
+    schema:address [
+        schema:streetAddress "Via della Lungara 10" ;
+        schema:addressLocality "Roma" ;
+        schema:addressCountry "IT"
+    ] .
