@@ -280,6 +280,40 @@ WHERE {
     <td colspan="3">I asked the LLMs to find whether the painting <em>Santa Maria Maddalena</em> by the school of Guido Reni (that is a part of the ArCo archive) is located at the moment. Both ChatGPT and DeepSeek ended up giving the exact locations, confirming that the painting was indeed in Rome. However, these two LLMs gave two different locations. Further investigation revealed that ChatGPT provided the right information. Thus, despite DeepSeek giving more detailed information, it ended up being wrong. Gemini was not able to find the painting anywhere, it explained why it cannot provide this information and also gave an instruction to try to find it yourself.</td>
   </tr>
 </table>
+  <h2>Semantic Enrichment Using RDF Triples</h2>
+<p>
+Thus, we can enhance the ontology by creating new triplets to link the artwork to its exact location, meaning not only the city but also an address.
+</p>
+
+<p><strong>Triplet:</strong></p>
+<pre><code>@prefix arco: &lt;http://data.cultura.gov.it/ontology/arco/&gt; .
+@prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .
+@prefix schema: &lt;http://schema.org/&gt; .
+@prefix ex: &lt;http://example.org/resource/&gt; .
+
+ex:SantaMariaMaddalena_ReniSchool a arco:VisualItem ;
+    dcterms:title "Santa Maria Maddalena"@it ;
+    dcterms:creator ex:GuidoReniSchool ;
+    dcterms:date "1650-1700"^^xsd:string ;
+    arco:hasCurrentLocation ex:GalleriaCorsini_Rome .
+
+ex:GuidoReniSchool a arco:Agent ;
+    dcterms:name "School of Guido Reni"@en .
+
+ex:GalleriaCorsini_Rome a arco:Place ;
+    schema:name "Galleria Corsini"@it ;
+    schema:address [
+        schema:streetAddress "Via della Lungara 10" ;
+        schema:addressLocality "Roma" ;
+        schema:addressCountry "IT"
+    ] .
+</code></pre>
+
+<p>
+This allows us to generate additional triplets for other artworks, further enhancing the ontology.
+This project illustrates the collaboration between knowledge graphs and language models to improve and expand cultural heritage information.
+</p>
+
 
   <a href="index.html" class="back-link">&larr; Back to main page</a>
 </body>
