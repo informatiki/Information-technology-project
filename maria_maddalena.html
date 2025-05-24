@@ -51,6 +51,115 @@
 <p>
   Below, I present how I attempted to enrich the ArCo ontology, along with several example queries executed through the SPARQL Query Editor.
 </p>
+<h2>SPARQL Queries and Results</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin-top: 1em;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0; text-align: left;">SPARQL Query</th>
+      <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0; text-align: left;">Result / Interpretation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 10px; text-align: justify;">
+<pre style="white-space: pre-wrap; font-family: monospace;">
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT (COUNT(DISTINCT ?artwork) AS ?countMaddalene)
+WHERE {
+  ?artwork a arco:HistoricOrArtisticProperty ;
+           a-cd:hasSubject ?subject .
+  
+  ?subject rdfs:label ?subjectLabel .
+  FILTER(REGEX(?subjectLabel, "Maria Maddalena|Maddalene|María Maddalena", "i"))
+}
+</pre>
+      </td>
+      <td style="border: 1px solid #ccc; padding: 10px; text-align: justify;">
+        The SPARQL request I used here was to find how many paintings of Maria Magdalena are there in the ArCo. According to the ArCo, there are 5219 artworks with this Biblical figure. The answer seems to be accurate.
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 10px; text-align: justify;">
+<pre style="white-space: pre-wrap; font-family: monospace;">
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT DISTINCT ?artwork ?title ?creationDate
+WHERE {
+  ?artwork a arco:HistoricOrArtisticProperty ;
+           rdfs:label ?title ;
+           a-cd:hasSubject ?subject .
+  
+  ?subject rdfs:label ?subjectLabel .
+  FILTER(REGEX(?subjectLabel, "Maria Maddalena|Maddalene|María Maddalena", "i"))
+
+  OPTIONAL { ?artwork a-cd:hasDate ?creationDate . }
+}
+ORDER BY ?creationDate
+</pre>
+      </td>
+      <td style="border: 1px solid #ccc; padding: 10px; text-align: justify;">
+        This query was created to retrieve titles of Maria Maddalena artworks and their dates of creation. It also provided information on the artists.
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 10px; text-align: justify;">
+<pre style="white-space: pre-wrap; font-family: monospace;">
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX l0: &lt;https://w3id.org/italia/onto/l0/&gt;
+
+SELECT DISTINCT ?artwork ?title
+WHERE {
+  ?artwork a arco:HistoricOrArtisticProperty ;
+           rdfs:label ?title ;
+           a-cd:hasSubject ?subject ;
+           a-cd:hasCulturalPropertyIdentifier ?identifier ;
+           arco:hasCulturalPropertyAddress ?address .
+  
+  ?subject rdfs:label ?subjectLabel .
+  FILTER(REGEX(?subjectLabel, "Maria Maddalena|Magdalene", "i"))
+
+  ?address l0:name ?locationName .
+  FILTER(REGEX(?locationName, "Roma|Rome", "i"))
+}
+ORDER BY ?title
+</pre>
+      </td>
+      <td style="border: 1px solid #ccc; padding: 10px; text-align: justify;">
+        This query was intended to list artworks of Mary Magdalene located in Rome. Unfortunately, it returned no results, although such artworks exist in the ArCo database. This may be due to limitations in how location data is structured or queried.
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 10px; text-align: justify;">
+<pre style="white-space: pre-wrap; font-family: monospace;">
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT DISTINCT ?artwork ?title
+WHERE {
+  ?artwork a arco:HistoricOrArtisticProperty ;
+           rdfs:label ?title .
+  
+  FILTER(CONTAINS(LCASE(?title), "maria maddalena") &amp;&amp; CONTAINS(LCASE(?title), "statua"))
+}
+</pre>
+      </td>
+      <td style="border: 1px solid #ccc; padding: 10px; text-align: justify;">
+        This query was made to test whether ArCo can return specific types of artworks, such as statues of Maria Maddalena. It worked only when the term “statua” was used in the title, showing a limitation in querying by artwork type.
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 
   <a href="index.html" class="back-link">&larr; Back to main page</a>
