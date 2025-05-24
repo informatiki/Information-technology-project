@@ -63,6 +63,137 @@
     <p>Below, I demonstrated how I tried to enrich the ArCo ontology and gave several examples of requests through the SPARQL Query Editor.</p>
 </div>
 
+    <table style="width: 100%; border-collapse: collapse; margin-top: 30px;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ccc; padding: 8px; background: #f0f0f0; text-align: left; width: 50%;">SPARQL Запрос</th>
+      <th style="border: 1px solid #ccc; padding: 8px; background: #f0f0f0; text-align: left; width: 50%;">Дополнительная информация</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space: pre-wrap; font-family: monospace; font-size: 14px;">
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;<br>
+PREFIX a-dd: &lt;https://w3id.org/arco/ontology/denotative-description/&gt;<br>
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;<br>
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;<br>
+SELECT DISTINCT ?artwork ?title ?author ?technique ?material<br>
+WHERE {<br>
+  {<br>
+    ?artwork a arco:HistoricOrArtisticProperty ;<br>
+             rdfs:label ?title .<br>
+    FILTER(REGEX(?title, "San Francesco", "i"))<br>
+  }<br>
+  UNION<br>
+  {<br>
+    ?artwork a arco:HistoricOrArtisticProperty ;<br>
+             rdfs:label ?title .<br>
+    FILTER(REGEX(?title, "San Francesco", "i"))<br>
+  }<br>
+  OPTIONAL { ?artwork a-cd:author ?author . }<br>
+  OPTIONAL { ?artwork a-dd:hasTechnique/rdfs:label ?technique . }<br>
+  OPTIONAL { ?artwork a-dd:hasMaterial/rdfs:label ?material . }<br>
+}<br>
+ORDER BY ?title<br>
+LIMIT 10
+      </td>
+      <td style="border: 1px solid #ccc; padding: 8px;">
+        The query retrieved information about artworks associated with the figure of "San Francesco".
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space: pre-wrap; font-family: monospace; font-size: 14px;">
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;<br>
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;<br>
+PREFIX a-dd: &lt;https://w3id.org/arco/ontology/denotative-description/&gt;<br>
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;<br>
+PREFIX crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt;<br>
+SELECT (COUNT(DISTINCT ?artwork) AS ?count)<br>
+WHERE {<br>
+  ?artwork a arco:HistoricOrArtisticProperty ;<br>
+           rdfs:label ?title .<br>
+  {<br>
+    ?artwork a-cd:hasSubject ?subject .<br>
+    ?subject rdfs:label ?subjectLabel .<br>
+    FILTER(REGEX(?subjectLabel, "Francesco|Francis|Франциск|stigmata|Assisi", "i"))<br>
+  } UNION {<br>
+    ?artwork rdfs:comment ?comment .<br>
+    FILTER(REGEX(?comment, "Francesco|Francis|Франциск", "i"))<br>
+  }<br>
+}
+      </td>
+      <td style="border: 1px solid #ccc; padding: 8px;">
+        I decided to find information about the number of artworks with San Francesco in the ArCo ontology.<br>
+        It says there are 20,542 artworks devoted to San Francesco. It looks truthful.
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space: pre-wrap; font-family: monospace; font-size: 14px;">
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;<br>
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;<br>
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;<br>
+PREFIX crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt;<br>
+ASK {<br>
+  ?artwork a arco:HistoricOrArtisticProperty ;<br>
+           rdfs:label ?title .<br>
+  {<br>
+    ?artwork a-cd:author ?author .<br>
+    ?author crm:P1_is_identified_by ?nameEntity .<br>
+    ?nameEntity rdfs:label ?authorName .<br>
+    FILTER(REGEX(?authorName, "Caravaggio|Merisi|da Caravaggio", "i"))<br>
+  } UNION {<br>
+    ?artwork crm:P14_carried_out_by ?author .<br>
+    ?author rdfs:label ?authorName .<br>
+    FILTER(REGEX(?authorName, "Caravaggio", "i"))<br>
+  }<br>
+  {<br>
+    ?artwork a-cd:hasSubject ?subject .<br>
+    ?subject rdfs:label ?subjectLabel .<br>
+    FILTER(REGEX(?subjectLabel, "Francesco|Francis|stigmata|Assisi", "i"))<br>
+  }<br>
+}
+      </td>
+      <td style="border: 1px solid #ccc; padding: 8px;">
+        I made a SPARQL query to check whether ArCo contains information about Caravaggio’s painting San Francesco, using the prompting technique "true/false." It responded that such a painting is not included, even though it is one of the most famous artworks featuring Saint Francis.<br>
+        With this information we can enrich the ontology.
+      </td>
+    </tr>
+
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space: pre-wrap; font-family: monospace; font-size: 14px;">
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;<br>
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;<br>
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;<br>
+SELECT <br>
+  (COUNT(DISTINCT ?artworkFrancis) AS ?countFrancis)<br>
+  (COUNT(DISTINCT ?artworkMaddalena) AS ?countMaadalena)<br>
+WHERE {<br>
+  {<br>
+    ?artworkFrancis a arco:HistoricOrArtisticProperty ;<br>
+                    a-cd:hasSubject ?subjectFrancis .<br>
+    ?subjectFrancis rdfs:label ?subjectLabelFrancis .<br>
+    FILTER(REGEX(?subjectLabelFrancis, "Francesco|Francis|Франциск|stigmata|Assisi", "i"))<br>
+  }<br>
+  UNION<br>
+  {<br>
+    ?artworkMaddalena a arco:HistoricOrArtisticProperty ;<br>
+                      a-cd:hasSubject ?subjectMaddalena .<br>
+    ?subjectMaddalena rdfs:label ?subjectLabelMaddalena .<br>
+    FILTER(REGEX(?subjectLabelMaddalena, "Maria Maddalena|Maddalena|María Maddalena", "i"))<br>
+  }<br>
+}
+      </td>
+      <td style="border: 1px solid #ccc; padding: 8px;">
+        I made a SPARQL query using the prompting technique "either/or" and asked which figure has more artworks in ArCo: Saint Francis or Mary Magdalene.<br>
+        It returned the following result: 19,154 with San Francesco and 5,698 with Maria Maddalena.<br>
+        This answer seems true.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
     <a href="index.html" class="back-link">&larr; Back to main page</a>
 </body>
 </html>
