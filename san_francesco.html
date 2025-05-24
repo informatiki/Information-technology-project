@@ -319,6 +319,103 @@ WHERE {<br>
   </table>
 
   <div class="result"><strong>Result:</strong> The best answer is DeepSeek’s because it provides clear, precise information and helpful context. All three are accurate.</div>
+  <h2>Ontology Enrichment</h2>
+  <p>
+    Thus, we can enhance the ontology by creating new triplets to link the artwork to the author, location and its description.
+  </p>
+
+  <h3>Author:</h3>
+  <pre>
+@prefix arco: &lt;https://w3id.org/arco/ontology/arco/&gt; .
+@prefix a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix ex: &lt;http://example.org/&gt; .
+
+&lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500704524&gt;
+    a-cd:hasSubject ex:SaintFrancisInEcstasy ;
+    a-cd:hasSubject ex:SaintFrancisInMeditation ;
+    arco:creator ex:Caravaggio .
+
+ex:SaintFrancisInEcstasy
+    a a-cd:Subject ;
+    rdfs:label "Saint Francis of Assisi in Ecstasy" .
+
+ex:SaintFrancisInMeditation
+    a a-cd:Subject ;
+    rdfs:label "Saint Francis in Meditation" .
+
+ex:Caravaggio
+    a arco:Person ;
+    rdfs:label "Michelangelo Merisi da Caravaggio" .
+  </pre>
+
+  <h3>Location:</h3>
+  <pre>
+@prefix arco: &lt;https://w3id.org/arco/ontology/arco/&gt; .
+@prefix a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix ex: &lt;http://example.org/&gt; .
+
+&lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500704524&gt;
+    a-cd:hasSubject ex:SaintFrancisInEcstasy ;
+    a-cd:hasSubject ex:SaintFrancisInMeditation ;
+    arco:creator ex:Caravaggio ;
+    arco:hasCurrentLocation ex:WadsworthAtheneum .
+
+ex:SaintFrancisInEcstasy
+    a a-cd:Subject ;
+    rdfs:label "Saint Francis of Assisi in Ecstasy" .
+
+ex:SaintFrancisInMeditation
+    a a-cd:Subject ;
+    rdfs:label "Saint Francis in Meditation" .
+
+ex:Caravaggio
+    a arco:Person ;
+    rdfs:label "Michelangelo Merisi da Caravaggio" .
+
+ex:WadsworthAtheneum
+    a arco:Museum ;
+    rdfs:label "Wadsworth Atheneum Museum of Art, Hartford, Connecticut, USA" .
+  </pre>
+
+  <h3>What is depicted:</h3>
+  <pre>
+@prefix arco: &lt;https://w3id.org/arco/ontology/arco/&gt; .
+@prefix a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .
+@prefix ex: &lt;http://example.org/&gt; .
+
+&lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500704524&gt;
+    a-cd:hasSubject ex:SaintFrancisInEcstasy ;
+    a-cd:hasSubject ex:SaintFrancisInMeditation ;
+    arco:creator ex:Caravaggio ;
+    arco:hasCurrentLocation ex:WadsworthAtheneum .
+
+ex:SaintFrancisInEcstasy
+    a a-cd:Subject ;
+    rdfs:label "Saint Francis of Assisi in Ecstasy" ;
+    dcterms:description "Depicts Saint Francis experiencing a mystical vision, receiving the stigmata, supported by an angel." .
+
+ex:SaintFrancisInMeditation
+    a a-cd:Subject ;
+    rdfs:label "Saint Francis in Meditation" ;
+    dcterms:description "Shows Saint Francis in contemplation, often with a skull symbolizing mortality and penitence." .
+
+ex:Caravaggio
+    a arco:Person ;
+    rdfs:label "Michelangelo Merisi da Caravaggio" .
+
+ex:WadsworthAtheneum
+    a arco:Museum ;
+    rdfs:label "Wadsworth Atheneum Museum of Art, Hartford, Connecticut, USA" .
+  </pre>
+
+  <p>
+    We can create new triplets about other artworks as well and enrich the ontology.
+    This project demonstrates how knowledge graphs and language models can work together to enrich cultural heritage data.
+  </p>
 
 <a href="index.html" class="back-link">&larr; Back to main page</a>
 </body>
