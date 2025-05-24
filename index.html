@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Religious Figures in Italian Art</title>
     <style>
-        body { font-family: Georgia, serif; max-width: 800px; margin: auto; padding: 20px; }
+        body {
+            position: relative;
+            font-family: Georgia, serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: none;
+            z-index: 0;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background-image: url('images/Last_Judgement_(Michelangelo).jpg'); /* путь к картинке */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: -1;
+        }
         h1 { color: #3c3c3c; }
         .project-description {
             font-style: italic;
-            font-weight: 300; /* тонкий шрифт */
+            font-weight: 300;
             color: #555;
             margin-top: 40px;
             line-height: 1.5;
@@ -16,7 +35,6 @@
     </style>
 </head>
 <body>
-
     <h1>Representation of Religious Figures in Italian Art: Documentation and Analysis within the ArCo Archive</h1>
     <ul>
         <li><a href="#mariia">Mariia – Maria Vergine</a></li>
@@ -31,6 +49,6 @@
         During this process, we identified several gaps and omissions. To address these, we leveraged Large Language Models (LLMs) to deepen our understanding of the subject matter. The knowledge extracted from LLMs was then transformed into new triples intended to enhance and broaden the ArCo database.<br><br>
         For a more detailed look at our research, please follow the hyperlinks located at the top of the page.
     </p>
-
 </body>
 </html>
+
