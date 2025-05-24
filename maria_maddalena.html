@@ -162,12 +162,124 @@ WHERE {
 </table>
 
 <p style="text-align: justify;">
-  In the process of analyzing the ArCo database, searches were conducted to identify artworks depicting Mary Magdalene were located specifically in Rome. Although this information is present in the ArCo database (can be found under the section “coverage”) – for example, it is known that <em>Santa Maria Maddalena</em> by Bartolomeo Vivarini is held in the Galleria Doria Pamphilj in Rome — the SPARQL queries failed to retrieve results that combine both the subject (Mary Magdalene) and the location (Rome). Multiple versions of SPARQL code were tested, including variations using different ontology properties such as <code>hasLocation</code> and <code>coverage</code>, but none produced the expected results.
+  In the process of analyzing the ArCo database, searches were conducted to identify artworks depicting Mary Magdalene were located specifically in Rome. Although this information is present in the ArCo database (can be found under the section “coverage”) – for example, it is known that <em>Santa Maria Maddalena</em> by Bartolomeo Vivarini is held in the Galleria Doria Pamphilj in Rome — the SPARQL queries failed to retrieve results that combine both the subject (Mary Magdalene) and the location (Rome). Multiple versions of SPARQL code were tested, including variations using different ontology properties such as <code>hasLocation</code>code> and <code>coverage</code>code>, but none produced the expected results.
 </p>
 
 <p style="text-align: justify;">
   This suggests a structural limitation or inconsistency in how linked data is implemented within ArCo, particularly in connecting subject metadata with geographic information. To address this, we propose semantic enrichment of the database. As a demonstrative case, we manually encoded the metadata for various artworks of Mary Magdalene in RDF format, adding explicit details about its current location in a format compatible with the ArCo ontology.
 </p>
+<h2>LLM Prompts Used to Retrieve Information with 3 Techniques</h2>
+<table border="1" cellspacing="0" cellpadding="10" style="border-collapse: collapse; width: 100%; text-align: justify;">
+  <tr>
+    <th></th>
+    <th>ChatGPT</th>
+    <th>Gemini</th>
+    <th>DeepSeek</th>
+  </tr>
+  <tr>
+    <td><strong>Question</strong></td>
+    <td colspan="3">Give me a list of all Italian cities where artworks of Maria Maddalena are currently located.</td>
+  </tr>
+  <tr>
+    <td><strong>Answer</strong></td>
+    <td>
+      Here is a list of Italian cities where artworks of Maria Maddalena are currently located:<br>
+      1. Florence (Firenze)<br>
+      2. Genoa (Genova)<br>
+      3. Milan (Milano)<br>
+      4. Arezzo<br>
+      5. Urbania<br>
+      6. Cento<br>
+      7. Rome (Roma)<br>
+      8. Forlì
+    </td>
+    <td>
+      Here’s a list of Italian cities where you are likely to find artworks of Mary Magdalene (but not a guaranteed complete list):<br>
+      1. Florence<br>
+      2. Rome<br>
+      3. Venice<br>
+      4. Milan<br>
+      5. Naples<br>
+      6. Genoa<br>
+      7. Bologna<br>
+      8. Siena<br>
+      9. Assisi
+    </td>
+    <td>
+      Here’s a concise list of Italian cities with notable artworks of Mary Magdalene (Maria Maddalena):<br>
+      1. Florence (Firenze)<br>
+      2. Venice (Venezia)<br>
+      3. Rome (Roma)<br>
+      4. Naples (Napoli)<br>
+      5. Arezzo<br>
+      6. Siena<br>
+      7. Bologna<br>
+      8. Turin (Torino)<br>
+      9. Assisi<br>
+      10. Lucca<br>
+      11. Verona<br>
+      12. Bergamo<br>
+      13. Perugia<br>
+      14. Palermo<br>
+      15. Pistoia<br>
+      16. Montalcino<br>
+      17. Città di Castello<br>
+      18. Lecce
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4"><strong>Note:</strong> All the LLMs also provided examples with the names of the locations where the paintings are held, but it was not possible to include all of them in this table.</td>
+  </tr>
+  <tr>
+    <td><strong>Results</strong></td>
+    <td colspan="3">DeepSeek provided the best results out of the three used LLMs. It gave the longer list and specified that it is a list of the most noticeable artworks, meaning that it clarified that the list will not be full. Gemini was second best as it specified that the provided results may not be guaranteed whereas ChatGPT gave the smallest amount of locations without giving any details. The results confirm that there are artworks of Maria Maddalena in various Italian cities, including Rome that was a subject of our interest in the SPARQL query.</td>
+  </tr>
+
+  <tr>
+    <th></th>
+    <th>ChatGPT</th>
+    <th>Gemini</th>
+    <th>DeepSeek</th>
+  </tr>
+  <tr>
+    <td><strong>Question</strong></td>
+    <td colspan="3">Where is the painting <em>Santa Maria Maddalena</em> by the school of Guido Reni (second half of the 17th century) currently located?</td>
+  </tr>
+  <tr>
+    <td><strong>Answer</strong></td>
+    <td>
+      The painting titled <em>Santa Maria Maddalena</em> attributed to the school of Guido Reni and dated to the second half of the 17th century is currently housed at the Galleria Corsini in Rome. This oil on canvas measures 73 by 61 cm and depicts Mary Magdalene with a skull, a traditional symbol of penance. The work is catalogued under inventory number 427. This piece is part of the Italian state's art collections and is displayed at Palazzo Corsini, located at Via della Lungara 10, Rome.
+    </td>
+    <td>
+      Finding the exact current location of a painting attributed to the “school of Guido Reni” (rather than directly by Guido Reni) can be challenging. Here’s what I can suggest, along with the reasoning behind my approach:<br><br>
+      <strong>Why It’s Difficult:</strong><br>
+      - School of Guido Reni vs. By Guido Reni: attribution may be less precise.<br>
+      - Common Subject: many similar paintings exist.<br>
+      - Provenance Research is complex.<br>
+      - Online databases may be incomplete.<br><br>
+      <strong>How to Approach:</strong><br>
+      - Search museum catalogs<br>
+      - Consult ArCo<br>
+      - Contact cultural institutions
+    </td>
+    <td>
+      The painting <em>"Santa Maria Maddalena"</em> attributed to the school of Guido Reni is currently located in:<br><br>
+      <strong>Church of Santa Maria Maddalena (Chiesa di Santa Maria Maddalena)</strong><br>
+      Address: Piazza della Maddalena, 53, 00186 Rome, Italy<br><br>
+      <strong>Context:</strong><br>
+      This Baroque church, dedicated to Mary Magdalene, houses several artworks depicting her, including the one attributed to Guido Reni's circle.<br><br>
+      <strong>How to Confirm:</strong><br>
+      - Check the church's official inventory<br>
+      - Search ArCo/ICCD database<br>
+      - Filter by 17th century and ecclesiastical holdings<br>
+      <strong>Alternative Locations:</strong> Vicariato di Roma or Galleria Corsini.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Results</strong></td>
+    <td colspan="3">I asked the LLMs to find whether the painting <em>Santa Maria Maddalena</em> by the school of Guido Reni (that is a part of the ArCo archive) is located at the moment. Both ChatGPT and DeepSeek ended up giving the exact locations, confirming that the painting was indeed in Rome. However, these two LLMs gave two different locations. Further investigation revealed that ChatGPT provided the right information. Thus, despite DeepSeek giving more detailed information, it ended up being wrong. Gemini was not able to find the painting anywhere, it explained why it cannot provide this information and also gave an instruction to try to find it yourself.</td>
+  </tr>
+</table>
 
   <a href="index.html" class="back-link">&larr; Back to main page</a>
 </body>
