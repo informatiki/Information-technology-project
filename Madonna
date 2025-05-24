@@ -1,0 +1,13 @@
+PREFIX arco: <https://w3id.org/arco/ontology/arco/>
+PREFIX a-cd: <https://w3id.org/arco/ontology/context-description/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?item ?label ?subjectLabel
+WHERE {
+  ?item a arco:HistoricOrArtisticProperty ;
+        rdfs:label ?label ;
+        a-cd:hasSubject ?subject .
+  ?subject rdfs:label ?subjectLabel .
+  FILTER(LANG(?label) = "en")
+  FILTER(REGEX(?subjectLabel, "madonna|maria|vergine", "i"))
+}
