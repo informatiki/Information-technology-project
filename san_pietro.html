@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saint Peter in ArCo – Olga</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      line-height: 1.6;
+      padding: 0 20px;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-left: 4px solid #ccc;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+    }
+    a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Saint Peter in ArCo – Olga</h1>
+
+  <h2>Saint Peter in Italian Christian Culture</h2>
+  <p>Saint Peter, one of the twelve apostles of Jesus Christ, holds a foundational role in Christian tradition. Regarded as the first Bishop of Rome, he is widely considered the first pope by the Roman Catholic Church. According to the New Testament, Jesus entrusted Peter with the leadership of the early Church, symbolically referring to him as the "rock" upon which the Church would be built.</p>
+
+  <p>In Italian Christian culture, Saint Peter is deeply revered not only for his apostolic authority but also for his martyrdom in Rome during the reign of Emperor Nero. He was crucified upside down on Vatican Hill and buried where St. Peter’s Basilica now stands.</p>
+
+  <p>Peter is often depicted with keys, a rooster, a fishing net, or being crucified upside down. Artists like Michelangelo and Caravaggio famously portrayed him.</p>
+
+  <h2>SPARQL Query Progression</h2>
+  <p>Initial queries retrieved both paintings and churches. The query was then narrowed to movable paintings explicitly named after Saint Peter.</p>
+
+  <pre><code>SELECT DISTINCT ?artwork ?title
+WHERE {
+  ?artwork a arco:MovableCulturalProperty ;
+           rdfs:label ?title .
+  FILTER(REGEX(?title, "(?i)\\b(san|santo|saint|sanctus)\\s+pietro\\b"))
+}
+LIMIT 50
+</code></pre>
+
+  <p>Later, filters were added to exclude prints and frescoes, and to include keywords like <em>keys</em> and <em>rooster</em>.</p>
+
+  <pre><code>FILTER(REGEX(?title, "(?i)chiavi|rooster|gallo|croce|pesca|pescatore|barca"))
+FILTER(!REGEX(LCASE(?matTechLabel), "muratura|intonaco|fresco"))</code></pre>
+
+  <h2>Prompting Experiments with LLMs</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Prompt Type</th>
+        <th>LLMs Used</th>
+        <th>Result Summary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Zero-shot</td>
+        <td>ChatGPT, Gemini, DeepSeek</td>
+        <td>All models correctly identified key symbols like keys, rooster, beard. DeepSeek provided more structured grouping.</td>
+      </tr>
+      <tr>
+        <td>Few-shot</td>
+        <td>ChatGPT, Gemini, DeepSeek</td>
+        <td>Effective in enforcing concise format. Clean and stylistically aligned answers across models.</td>
+      </tr>
+      <tr>
+        <td>Chain-of-Thought</td>
+        <td>ChatGPT, Gemini, DeepSeek</td>
+        <td>Produced the most detailed iconographic and narrative reasoning. ChatGPT and DeepSeek gave the most pedagogically rich answers.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Metadata Gaps in ArCo</h2>
+  <p>Several gaps were identified:</p>
+  <ul>
+    <li><strong>Missing <code>arco:hasSubject</code></strong> – even when Saint Peter is clearly depicted.</li>
+    <li><strong>Missing <code>a-cd:hasIconographicSubject</code></strong> – symbols like keys or rooster are not linked.</li>
+    <li><strong>Missing color metadata</strong> – black-and-white reproductions are not distinguished from original polychrome works.</li>
+  </ul>
+
+  <h2>RDF Triples to Address Metadata Gaps</h2>
+
+  <h3>🟡 Missing Subject Annotation</h3>
+  <pre><code>@prefix arco: &lt;https://w3id.org/arco/ontology/arco/&gt; .
+@prefix a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .
+@prefix ex: &lt;http://example.org/&gt; .
+
+&lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500809999&gt;
+  rdfs:label "San Pietro con le Chiavi" ;
+  dcterms:description "Saint Peter holding a pair of keys, but subject metadata is missing." ;
+  ex:hasMetadataGap ex:MissingSubjectLink ;
+  ex:needsSubject ex:SaintPeter .
+
+ex:MissingSubjectLink
+  rdfs:label "Missing arco:hasSubject property" ;
+  dcterms:description "The artwork visually represents Saint Peter but lacks semantic subject annotation." .
+
+ex:SaintPeter
+  a a-cd:Subject ;
+  rdfs:label "Saint Peter" .
+</code></pre>
+
+  <h3>🟡 Missing Iconographic Subject</h3>
+  <pre><code>&lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500812222&gt;
+  rdfs:label "San Pietro con il Gallo" ;
+  dcterms:description "Painting shows Saint Peter with a rooster and keys — but lacks iconographic metadata." ;
+  ex:hasMetadataGap ex:MissingIconographicSubject ;
+  ex:iconographyInferred ex:KeysOfHeaven , ex:Rooster .
+
+ex:MissingIconographicSubject
+  rdfs:label "Missing a-cd:hasIconographicSubject property" ;
+  dcterms:description "Key iconographic details are present but not formally recorded." .
+
+ex:KeysOfHeaven rdfs:label "Keys of Heaven" .
+ex:Rooster rdfs:label "Rooster" .
+</code></pre>
+
+  <h3>🟡 Missing Colour Information</h3>
+  <pre><code>&lt;https://w3id.org/arco/resource/HistoricOrArtisticProperty/0500811111&gt;
+  rdfs:label "San Pietro in Preghiera" ;
+  dcterms:description "Black-and-white drawing of Saint Peter, but no color metadata." ;
+  ex:hasMetadataGap ex:MissingColorInformation ;
+  ex:recommendedColorTag ex:Monochrome .
+
+ex:MissingColorInformation
+  rdfs:label "Missing color classification" ;
+  dcterms:description "No color state is recorded in metadata, despite being clearly monochrome." .
+
+ex:Monochrome
+  rdfs:label "Monochrome" ;
+  dcterms:description "Artwork contains only black, white, and gray tones." .
+</code></pre>
+
+  <p><a href="index.html">← Back to homepage</a></p>
+
+</body>
+</html>
