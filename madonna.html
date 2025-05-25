@@ -74,36 +74,56 @@ In this project, I aim to explore how the image of the Virgin Mary is represente
     <img src="ICCD16336305_Alice Psacaropulo Madonna col Bambino e angeli musicanti 1987 1992.JPG" alt="Artwork 4">
   </div>
 </div>
-  <p>
-    The SPARQL queries revealed a key limitation: no works were found that had both the <strong>tempera technique</strong> and an explicit subject referencing the Madonna.
-    This reflects a <strong>knowledge gap</strong> in the data structure.
-    To address this, I enriched the dataset with additional information.
-  </p>
+  <h2>SPARQL Queries</h2>
 
-  <p>
-    For example, I reconstructed data about the <strong>“Maestà” by Duccio di Buoninsegna</strong>,
-    a masterpiece executed in tempera and gold on wood, created for the altar of Siena Cathedral.
-    While not listed in ArCo with those combined attributes, it is a cornerstone of Italian Marian iconography.
-  </p>
-
-  <p>
-    Using Large Language Models (LLMs), I extracted iconographic details, historical context, and cultural function of the work,
-    which I then translated into RDF using ArCo-compatible vocabulary.
-  </p>
-
-  <p><strong>Semantic enrichment:</strong></p>
-  <ul>
-    <li>Technique: tempera</li>
-    <li>Material: wood, gold leaf</li>
-    <li>Subject: Madonna and Child</li>
-    <li>Iconography: Maestà composition</li>
-    <li>Function: High altar devotion object in Siena Cathedral</li>
-  </ul>
-
-  <p>
-    This approach demonstrates how structured data can be meaningfully expanded using AI and semantic technologies,
-    providing deeper insights into Italy’s artistic legacy.
-  </p>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <thead style="background-color: #f2f2f2;">
+    <tr>
+      <th>Query Purpose</th>
+      <th>SPARQL Code (excerpt)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Find all artworks related to Madonna/Maria/Vergine (subject)</td>
+      <td>
+        <code>
+        ?item a arco:HistoricOrArtisticProperty ;<br>
+        a-cd:hasSubject ?subject .<br>
+        FILTER(REGEX(?subjectLabel, "madonna|maria|vergine", "i"))
+        </code>
+      </td>
+    </tr>
+    <tr>
+      <td>Find artworks executed in tempera</td>
+      <td>
+        <code>
+        ?item a arco:HistoricOrArtisticProperty ;<br>
+        a-dd:hasTechnique ?technique .<br>
+        FILTER(REGEX(?techniqueLabel, "tempera", "i"))
+        </code>
+      </td>
+    </tr>
+    <tr>
+      <td>Count all tempera artworks in ArCo</td>
+      <td>
+        <code>
+        SELECT (COUNT(DISTINCT ?item) AS ?temperaCount)<br>
+        WHERE { ... }
+        </code>
+      </td>
+    </tr>
+    <tr>
+      <td>Find tempera artworks related to Madonna</td>
+      <td>
+        <code>
+        FILTER(REGEX(?techniqueLabel, "tempera", "i"))<br>
+        FILTER(REGEX(?subjectLabel, "madonna|maria|vergine", "i"))
+        </code>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
   <p><a href="index.html">← Back to homepage</a></p>
 
