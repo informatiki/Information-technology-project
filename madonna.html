@@ -74,38 +74,72 @@ In this project, I aim to explore how the image of the Virgin Mary is represente
     <img src="ICCD16336305_Alice Psacaropulo Madonna col Bambino e angeli musicanti 1987 1992.JPG" alt="Artwork 4">
   </div>
 </div>
-<h2>SPARQL Queries</h2>
+<h2>SPARQL Queries and Results</h2>
 
-<table class="table" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse;">
-  <tr>
-    <td><strong>Query 1:</strong> All objects with subjects containing “madonna”, “maria” or “vergine”</td>
-    <td>
-      <pre><code>
-?item a arco:HistoricOrArtisticProperty ;
-      rdfs:label ?label ;
-      a-cd:hasSubject ?subject .
-?subject rdfs:label ?subjectLabel .
-FILTER(LANG(?label) = "en")
-FILTER(REGEX(?subjectLabel, "madonna|maria|vergine", "i"))
-      </code></pre>
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Query 2:</strong> Objects executed in technique tempera</td>
-    <td>
-      <pre><code>
-?item a arco:HistoricOrArtisticProperty ;
-      rdfs:label ?label ;
-      a-dd:hasTechnique ?technique .
-?technique rdfs:label ?techniqueLabel .
-FILTER(REGEX(?techniqueLabel, "tempera", "i"))
-      </code></pre>
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Query 3:</strong> Count of all objects with technique tempera</td>
-    <td>
-      <pre><code>
+<table style="width: 100%; border-collapse: collapse; margin-top: 1em;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0; text-align: left;">SPARQL Query</th>
+      <th style="border: 1px solid #ccc; padding: 10px; background-color: #f0f0f0; text-align: left;">Result / Interpretation</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- Query 1 -->
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 10px;">
+<pre style="white-space: pre-wrap; font-family: monospace;">
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT DISTINCT ?item ?label ?subjectLabel
+WHERE {
+  ?item a arco:HistoricOrArtisticProperty ;
+        rdfs:label ?label ;
+        a-cd:hasSubject ?subject .
+  ?subject rdfs:label ?subjectLabel .
+  FILTER(LANG(?label) = "en")
+  FILTER(REGEX(?subjectLabel, "madonna|maria|vergine", "i"))
+}
+</pre>
+      </td>
+      <td style="border: 1px solid #ccc; padding: 10px;">
+        <p>This query retrieves all artworks in ArCo with subjects related to the Virgin Mary (e.g. “madonna”, “maria”, “vergine”). It returned a list of paintings and their subjects, showing the frequent presence of Marian themes.</p>
+      </td>
+    </tr>
+
+    <!-- Query 2 -->
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 10px;">
+<pre style="white-space: pre-wrap; font-family: monospace;">
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX a-dd: &lt;https://w3id.org/arco/ontology/denotative-description/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT DISTINCT ?item ?label ?techniqueLabel
+WHERE {
+  ?item a arco:HistoricOrArtisticProperty ;
+        rdfs:label ?label ;
+        a-dd:hasTechnique ?technique .
+  ?technique rdfs:label ?techniqueLabel .
+  FILTER(REGEX(?techniqueLabel, "tempera", "i"))
+}
+</pre>
+      </td>
+      <td style="border: 1px solid #ccc; padding: 10px;">
+        <p>This query lists all artworks in ArCo where the technique used is tempera. It is used to filter for a specific medium frequently applied in Marian devotional works.</p>
+      </td>
+    </tr>
+
+    <!-- Query 3 -->
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 10px;">
+<pre style="white-space: pre-wrap; font-family: monospace;">
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX a-dd: &lt;https://w3id.org/arco/ontology/denotative-description/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
 SELECT (COUNT(DISTINCT ?item) AS ?temperaCount)
 WHERE {
   ?item a arco:HistoricOrArtisticProperty ;
@@ -113,23 +147,41 @@ WHERE {
   ?technique rdfs:label ?techniqueLabel .
   FILTER(REGEX(?techniqueLabel, "tempera", "i"))
 }
-      </code></pre>
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Query 4:</strong> Objects with technique tempera and subject Madonna</td>
-    <td>
-      <pre><code>
-?item a arco:HistoricOrArtisticProperty ;
-      a-dd:hasTechnique ?technique ;
-      a-cd:hasSubject ?subject .
-?technique rdfs:label ?techniqueLabel .
-?subject rdfs:label ?subjectLabel .
-FILTER(REGEX(?techniqueLabel, "tempera", "i"))
-FILTER(REGEX(?subjectLabel, "madonna|maria|vergine", "i"))
-      </code></pre>
-    </td>
-  </tr>
+</pre>
+      </td>
+      <td style="border: 1px solid #ccc; padding: 10px;">
+        <p>This query calculates the total number of artworks executed in tempera technique. The result helps understand how often this medium appears in ArCo metadata.</p>
+      </td>
+    </tr>
+
+    <!-- Query 4 -->
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 10px;">
+<pre style="white-space: pre-wrap; font-family: monospace;">
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX a-dd: &lt;https://w3id.org/arco/ontology/denotative-description/&gt;
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT DISTINCT ?item ?label ?techniqueLabel ?subjectLabel
+WHERE {
+  ?item a arco:HistoricOrArtisticProperty ;
+        a-dd:hasTechnique ?technique ;
+        a-cd:hasSubject ?subject ;
+        rdfs:label ?label .
+  ?technique rdfs:label ?techniqueLabel .
+  ?subject rdfs:label ?subjectLabel .
+  FILTER(REGEX(?techniqueLabel, "tempera", "i"))
+  FILTER(REGEX(?subjectLabel, "madonna|maria|vergine", "i"))
+}
+</pre>
+      </td>
+      <td style="border: 1px solid #ccc; padding: 10px;">
+        <p>This query was designed to identify works that are both made in tempera and thematically related to the Madonna. No results were returned, suggesting that such combined metadata may be incomplete or missing in ArCo.</p>
+      </td>
+    </tr>
+
+  </tbody>
 </table>
 
   <p><a href="index.html">← Back to homepage</a></p>
