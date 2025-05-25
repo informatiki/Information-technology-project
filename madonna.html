@@ -2,10 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Madonna Project</title>
+  <title>Mariia – Maria Vergine</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      line-height: 1.6;
+      padding: 0 20px;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to the Madonna Heritage Project</h1>
-  <p>This project explores the cultural role of the Virgin Mary in Italian art.</p>
+
+  <h1>Mariia – Maria Vergine</h1>
+
+  <p><strong>Chosen theme:</strong> Works of art with the representation of the Virgin Mary (Madonna)</p>
+
+  <p>
+    I chose this topic because the Virgin Mary holds a central role in both religious and cultural heritage in Italy.
+    Her image is a recurring theme in Italian art history, appearing in countless paintings, sculptures, and architectural decorations across centuries.
+    Representations of the Madonna, especially those executed in tempera, are key to understanding religious devotion and artistic techniques of the past.
+  </p>
+
+  <p>
+    I began with SPARQL queries in the ArCo database to retrieve relevant works:
+  </p>
+
+  <ul>
+    <li>All artworks related to subjects containing “madonna”, “maria”, or “vergine”</li>
+    <li>Artworks executed in <em>tempera</em> technique</li>
+    <li>Count of objects in ArCo using <em>tempera</em> technique</li>
+  </ul>
+
+  <p>
+    The SPARQL queries revealed a key limitation: no works were found that had both the <strong>tempera technique</strong> and an explicit subject referencing the Madonna.
+    This reflects a <strong>knowledge gap</strong> in the data structure.
+    To address this, I enriched the dataset with additional information.
+  </p>
+
+  <p>
+    For example, I reconstructed data about the <strong>“Maestà” by Duccio di Buoninsegna</strong>,
+    a masterpiece executed in tempera and gold on wood, created for the altar of Siena Cathedral.
+    While not listed in ArCo with those combined attributes, it is a cornerstone of Italian Marian iconography.
+  </p>
+
+  <p>
+    Using Large Language Models (LLMs), I extracted iconographic details, historical context, and cultural function of the work,
+    which I then translated into RDF using ArCo-compatible vocabulary.
+  </p>
+
+  <p><strong>Semantic enrichment:</strong></p>
+  <ul>
+    <li>Technique: tempera</li>
+    <li>Material: wood, gold leaf</li>
+    <li>Subject: Madonna and Child</li>
+    <li>Iconography: Maestà composition</li>
+    <li>Function: High altar devotion object in Siena Cathedral</li>
+  </ul>
+
+  <p>
+    This approach demonstrates how structured data can be meaningfully expanded using AI and semantic technologies,
+    providing deeper insights into Italy’s artistic legacy.
+  </p>
+
+  <p><a href="index.html">← Back to homepage</a></p>
+
 </body>
 </html>
