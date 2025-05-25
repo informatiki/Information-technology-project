@@ -42,7 +42,7 @@
 </head>
 <body>
 
-  <h1>Saint Peter in ArCo – Olga</h1>
+  <h1>Saint Peter (San Pietro)</h1>
 
   <h2>Saint Peter in Italian Christian Culture</h2>
   <p>Saint Peter, one of the twelve apostles of Jesus Christ, holds a foundational role in Christian tradition. Regarded as the first Bishop of Rome, he is widely considered the first pope by the Roman Catholic Church. According to the New Testament, Jesus entrusted Peter with the leadership of the early Church, symbolically referring to him as the "rock" upon which the Church would be built.</p>
@@ -50,52 +50,41 @@
   <p>In Italian Christian culture, Saint Peter is deeply revered not only for his apostolic authority but also for his martyrdom in Rome during the reign of Emperor Nero. He was crucified upside down on Vatican Hill and buried where St. Peter’s Basilica now stands.</p>
 
   <p>Peter is often depicted with keys, a rooster, a fishing net, or being crucified upside down. Artists like Michelangelo and Caravaggio famously portrayed him.</p>
-<h2>SPARQL Query</h2>
+  <div class="image-row">
+        <img src="st_peter_photo1.jpg" alt="Artwork 1 depicting Saint Peter">
+        <img src="st_peter_photo2.jpg" alt="Artwork 2 depicting Saint Peter">
+        <img src="st_peter_photo3.jpg" alt="Artwork 3 depicting Saint Peter">
+    </div>
+  <h2>SPARQL Query</h2>
 
-<table style="width: 100%; border-collapse: collapse;">
-  <tr>
-    <th style="width: 50%; background-color: #f2f2f2; padding: 10px;">SPARQL Query</th>
-    <th style="background-color: #f2f2f2; padding: 10px;">Result</th>
-  </tr>
-  <tr>
-    <td style="vertical-align: top; padding: 10px;">
-      <pre><code>
-PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
-PREFIX a-dd: &lt;https://w3id.org/arco/ontology/denotative-description/&gt;
-PREFIX a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt;
-PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
-
-SELECT DISTINCT ?artwork ?title ?author ?technique ?material
-WHERE {
-  ?artwork a arco:MovableCulturalProperty ;
-           rdfs:label ?title .
-
-  FILTER(REGEX(?title, "(?i)\\b(san|santo|saint|sanctus)\\s+pietro\\b"))
-
-  OPTIONAL {
-    ?artwork a-cd:hasAuthor ?authorResource .
-    ?authorResource rdfs:label ?author .
-  }
-
-  OPTIONAL {
-    ?artwork a-dd:hasTechnique ?techniqueResource .
-    ?techniqueResource rdfs:label ?technique .
-  }
-
-  OPTIONAL {
-    ?artwork a-dd:hasMaterial ?materialResource .
-    ?materialResource rdfs:label ?material .
-  }
-}
-LIMIT 50
-      </code></pre>
-    </td>
-    <td style="vertical-align: top; padding: 10px;">
-      The query retrieved movable artworks with “Saint Peter” in the title. It excludes churches and architectural sites. <br>
-      <a href="https://dati.cultura.gov.it/sparql" target="_blank">RESULT</a>
-    </td>
-  </tr>
-</table>
+ <table style="width: 100%; border-collapse: collapse; margin-top: 30px;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ccc; padding: 8px; background: #f0f0f0; text-align: left; width: 50%;">SPARQL Query</th>
+      <th style="border: 1px solid #ccc; padding: 8px; background: #f0f0f0; text-align: left; width: 50%;">Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space: pre-wrap; font-family: monospace; font-size: 14px;">
+        PREFIX arco: <https://w3id.org/arco/ontology/arco/><br>
+PREFIX a-dd: <https://w3id.org/arco/ontology/denotative-description/><br>
+PREFIX a-cd: <https://w3id.org/arco/ontology/context-description/><br>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#><br>
+SELECT DISTINCT ?artwork ?title ?author ?technique ?material<br>
+WHERE {<br>
+  ?artwork a arco:HistoricOrArtisticProperty ;<br>
+           rdfs:label ?title .<br>
+  FILTER(REGEX(?title, "pietro", "i"))<br>
+  OPTIONAL { ?artwork a-cd:hasAuthor ?authorResource .<br>
+             ?authorResource rdfs:label ?author . }<br>
+  OPTIONAL { ?artwork a-dd:hasTechnique ?techniqueResource .<br>
+             ?techniqueResource rdfs:label ?technique . }<br>
+  OPTIONAL { ?artwork a-dd:hasMaterial ?materialResource .<br>
+             ?materialResource rdfs:label ?material . }<br>
+}<br>
+LIMIT 50<br>
+<td>
 
 </code></pre>
 
