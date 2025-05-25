@@ -43,17 +43,14 @@
 <body>
 
   <h1>Saint Peter (San Pietro)</h1>
-
   <h2>Saint Peter in Italian Christian Culture</h2>
   <p>Saint Peter, one of the twelve apostles of Jesus Christ, holds a foundational role in Christian tradition. Regarded as the first Bishop of Rome, he is widely considered the first pope by the Roman Catholic Church. According to the New Testament, Jesus entrusted Peter with the leadership of the early Church, symbolically referring to him as the "rock" upon which the Church would be built.</p>
-
   <p>In Italian Christian culture, Saint Peter is deeply revered not only for his apostolic authority but also for his martyrdom in Rome during the reign of Emperor Nero. He was crucified upside down on Vatican Hill and buried where St. Peter’s Basilica now stands.</p>
-
   <p>Peter is often depicted with keys, a rooster, a fishing net, or being crucified upside down. Artists like Michelangelo and Caravaggio famously portrayed him.</p>
   <div class="image-row">
-        <img src="st_peter_photo1.jpg" alt="Artwork 1 depicting Saint Peter">
-        <img src="st_peter_photo2.jpg" alt="Artwork 2 depicting Saint Peter">
-        <img src="st_peter_photo3.jpg" alt="Artwork 3 depicting Saint Peter">
+        <img src="st_peter_photo_1.jpg" alt="Artwork 1 depicting Saint Peter">
+        <img src="st_peter_photo_2.jpg" alt="Artwork 2 depicting Saint Peter">
+        <img src="st_peter_photo_3.jpg" alt="Artwork 3 depicting Saint Peter">
     </div>
   <h2>SPARQL Query</h2>
 
@@ -120,9 +117,38 @@ LIMIT 50
         The query specifies that only paintings are taken into consideration, which is searched in the section of movable property. <br>
   
         <a href="https://dati.cultura.gov.it/sparql?default-graph-uri=&query=PREFIX+arco%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Farco%2F%3E%0D%0APREFIX+a-dd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fdenotative-description%2F%3E%0D%0APREFIX+a-cd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fcontext-description%2F%3E%0D%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0A%0D%0ASELECT+DISTINCT+%3Fartwork+%3Ftitle+%3Fauthor+%3Ftechnique+%3Fmaterial%0D%0AWHERE+%7B%0D%0A++%3Fartwork+a+arco%3AMovableCulturalProperty+%3B%0D%0A+++++++++++rdfs%3Alabel+%3Ftitle+.%0D%0A%0D%0A++FILTER%28REGEX%28%3Ftitle%2C+%22%28%3Fi%29%5C%5Cb%28san%7Csanto%7Csaint%7Csanctus%29%5C%5Cs%2Bpietro%5C%5Cb%22%29%29%0D%0A%0D%0A++FILTER%28REGEX%28%3Ftitle%2C+%22pittura%7Cdipinto%22%2C+%22i%22%29%29%0D%0A%0D%0A++OPTIONAL+%7B%0D%0A++++%3Fartwork+a-cd%3AhasAuthor+%3FauthorRes+.%0D%0A++++%3FauthorRes+rdfs%3Alabel+%3Fauthor+.%0D%0A++%7D%0D%0A%0D%0A++OPTIONAL+%7B%0D%0A++++%3Fartwork+a-dd%3AhasTechnique+%3FtechniqueRes+.%0D%0A++++%3FtechniqueRes+rdfs%3Alabel+%3Ftechnique+.%0D%0A++%7D%0D%0A%0D%0A++OPTIONAL+%7B%0D%0A++++%3Fartwork+a-dd%3AhasMaterial+%3FmaterialRes+.%0D%0A++++%3FmaterialRes+rdfs%3Alabel+%3Fmaterial+.%0D%0A++%7D%0D%0A%7D%0D%0ALIMIT+50%0D%0A%0D%0A&format=text%2Fhtml&timeout=0&signal_void=on" target="_blank">RESULT</a></td>
-
-      </td>
+    </td>
     </tr>
+<tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space: pre-wrap; font-family: monospace; font-size: 14px;">
+PREFIX arco: <https://w3id.org/arco/ontology/arco/><br>
+PREFIX a-dd: <https://w3id.org/arco/ontology/denotative-description/><br>
+PREFIX a-cd: <https://w3id.org/arco/ontology/context-description/><br>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#><br>
+SELECT DISTINCT ?artwork ?title ?author ?technique ?material<br>
+WHERE {<br>
+  ?artwork a arco:MovableCulturalProperty ;<br>
+           rdfs:label ?title .<br>
+  FILTER(REGEX(?title, "(?i)\\b(san|santo|saint|sanctus)\\s+pietro\\b"))<br>
+  FILTER(REGEX(?title, "pittura|dipinto", "i"))<br>
+  FILTER(<br>
+    !REGEX(?title, "incisione|acquaforte|litografia|stampa", "i")<br>
+  )<br>
+  OPTIONAL {<br>
+    ?artwork a-cd:hasAuthor ?authorRes .<br>
+    ?authorRes rdfs:label ?author .<br>
+  }<br>
+  OPTIONAL {<br>
+    ?artwork a-dd:hasTechnique ?techniqueRes .<br>
+    ?techniqueRes rdfs:label ?technique .<br>
+  }<br>
+  OPTIONAL {<br>
+    ?artwork a-dd:hasMaterial ?materialRes .<br>
+    ?materialRes rdfs:label ?material .<br>
+  }<br>
+}<br>
+LIMIT 50
+  </td>
 
 
 
