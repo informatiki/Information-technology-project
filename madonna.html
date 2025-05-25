@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -74,52 +74,92 @@ In this project, I aim to explore how the image of the Virgin Mary is represente
     <img src="ICCD16336305_Alice Psacaropulo Madonna col Bambino e angeli musicanti 1987 1992.JPG" alt="Artwork 4">
   </div>
 </div>
-  <h2>SPARQL Queries</h2>
+ <h2>SPARQL Queries</h2>
 
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-  <thead style="background-color: #f2f2f2;">
+<style>
+  table.sparql {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  table.sparql th, table.sparql td {
+    border: 1px solid #aaa;
+    padding: 10px;
+    vertical-align: top;
+  }
+
+  table.sparql th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+
+  pre {
+    background-color: #f8f8f8;
+    padding: 10px;
+    margin: 0;
+    overflow-x: auto;
+    font-family: monospace;
+    font-size: 14px;
+  }
+</style>
+
+<table class="sparql">
+  <thead>
     <tr>
       <th>Query Purpose</th>
-      <th>SPARQL Code (excerpt)</th>
+      <th>SPARQL Query Snippet</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Find all artworks related to Madonna/Maria/Vergine (subject)</td>
+      <td>Find artworks with subject “Madonna”, “Maria”, or “Vergine”</td>
       <td>
-        <code>
-        ?item a arco:HistoricOrArtisticProperty ;<br>
-        a-cd:hasSubject ?subject .<br>
-        FILTER(REGEX(?subjectLabel, "madonna|maria|vergine", "i"))
-        </code>
+        <pre><code>
+?item a arco:HistoricOrArtisticProperty ;
+      a-cd:hasSubject ?subject .
+?subject rdfs:label ?subjectLabel .
+FILTER(REGEX(?subjectLabel, "madonna|maria|vergine", "i"))
+        </code></pre>
       </td>
     </tr>
     <tr>
-      <td>Find artworks executed in tempera</td>
+      <td>Find artworks with tempera technique</td>
       <td>
-        <code>
-        ?item a arco:HistoricOrArtisticProperty ;<br>
-        a-dd:hasTechnique ?technique .<br>
-        FILTER(REGEX(?techniqueLabel, "tempera", "i"))
-        </code>
+        <pre><code>
+?item a arco:HistoricOrArtisticProperty ;
+      a-dd:hasTechnique ?technique .
+?technique rdfs:label ?techniqueLabel .
+FILTER(REGEX(?techniqueLabel, "tempera", "i"))
+        </code></pre>
       </td>
     </tr>
     <tr>
-      <td>Count all tempera artworks in ArCo</td>
+      <td>Count artworks with tempera technique</td>
       <td>
-        <code>
-        SELECT (COUNT(DISTINCT ?item) AS ?temperaCount)<br>
-        WHERE { ... }
-        </code>
+        <pre><code>
+SELECT (COUNT(DISTINCT ?item) AS ?temperaCount)
+WHERE {
+  ?item a arco:HistoricOrArtisticProperty ;
+        a-dd:hasTechnique ?technique .
+  ?technique rdfs:label ?techniqueLabel .
+  FILTER(REGEX(?techniqueLabel, "tempera", "i"))
+}
+        </code></pre>
       </td>
     </tr>
     <tr>
-      <td>Find tempera artworks related to Madonna</td>
+      <td>Find tempera artworks with subject “Madonna”</td>
       <td>
-        <code>
-        FILTER(REGEX(?techniqueLabel, "tempera", "i"))<br>
-        FILTER(REGEX(?subjectLabel, "madonna|maria|vergine", "i"))
-        </code>
+        <pre><code>
+?item a arco:HistoricOrArtisticProperty ;
+      a-dd:hasTechnique ?technique ;
+      a-cd:hasSubject ?subject .
+?technique rdfs:label ?techniqueLabel .
+?subject rdfs:label ?subjectLabel .
+FILTER(REGEX(?techniqueLabel, "tempera", "i"))
+FILTER(REGEX(?subjectLabel, "madonna|maria|vergine", "i"))
+        </code></pre>
       </td>
     </tr>
   </tbody>
