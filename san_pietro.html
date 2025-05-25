@@ -116,6 +116,13 @@ WHERE {<br>
 }<br>
 LIMIT 50
   </td>
+      <td style="border: 1px solid #ccc; padding: 8px;">
+        The query specifies that only paintings are taken into consideration, which is searched in the section of movable property. <br>
+  
+        <a href="https://dati.cultura.gov.it/sparql?default-graph-uri=&query=PREFIX+arco%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Farco%2F%3E%0D%0APREFIX+a-dd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fdenotative-description%2F%3E%0D%0APREFIX+a-cd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fcontext-description%2F%3E%0D%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0A%0D%0ASELECT+DISTINCT+%3Fartwork+%3Ftitle+%3Fauthor+%3Ftechnique+%3Fmaterial%0D%0AWHERE+%7B%0D%0A++%3Fartwork+a+arco%3AMovableCulturalProperty+%3B%0D%0A+++++++++++rdfs%3Alabel+%3Ftitle+.%0D%0A%0D%0A++FILTER%28REGEX%28%3Ftitle%2C+%22%28%3Fi%29%5C%5Cb%28san%7Csanto%7Csaint%7Csanctus%29%5C%5Cs%2Bpietro%5C%5Cb%22%29%29%0D%0A%0D%0A++FILTER%28REGEX%28%3Ftitle%2C+%22pittura%7Cdipinto%22%2C+%22i%22%29%29%0D%0A%0D%0A++OPTIONAL+%7B%0D%0A++++%3Fartwork+a-cd%3AhasAuthor+%3FauthorRes+.%0D%0A++++%3FauthorRes+rdfs%3Alabel+%3Fauthor+.%0D%0A++%7D%0D%0A%0D%0A++OPTIONAL+%7B%0D%0A++++%3Fartwork+a-dd%3AhasTechnique+%3FtechniqueRes+.%0D%0A++++%3FtechniqueRes+rdfs%3Alabel+%3Ftechnique+.%0D%0A++%7D%0D%0A%0D%0A++OPTIONAL+%7B%0D%0A++++%3Fartwork+a-dd%3AhasMaterial+%3FmaterialRes+.%0D%0A++++%3FmaterialRes+rdfs%3Alabel+%3Fmaterial+.%0D%0A++%7D%0D%0A%7D%0D%0ALIMIT+50%0D%0A%0D%0A&format=text%2Fhtml&timeout=0&signal_void=on" target="_blank">RESULT</a></td>
+
+      </td>
+    </tr>
 
 
 
