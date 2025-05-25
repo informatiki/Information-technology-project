@@ -34,24 +34,46 @@ The choice of the theme associated with the image of the Virgin Mary is due to h
 In addition, Madonna images played an important role in social and political life: icons and statues were used in processions, patronized cities (e.g., Siena and Florence), and placed in cathedrals, monasteries, and private homes. They were not only objects of worship, but also elements of visual communication of faith.
 
 In this project, I aim to explore how the image of the Virgin Mary is represented in the ArCo database - and what information about her is missing or insufficiently revealed. This not only allows me to explore Italy's rich artistic heritage, but also to identify where current digital databases need to be supplemented. The Madonna image was the starting point for building semantic data enrichment through RDF and artificial intelligence.<p>
-<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-  <div style="flex: 1 1 45%; max-width: 45%;">
-    <img src="img/ICCD16406740_MDBS1315.jpeg" alt="Artwork 1" style="width: 100%; border: 1px solid #ccc;">
-  </div>
+<h2>Selected Artworks</h2>
 
-  <div style="flex: 1 1 45%; max-width: 45%;">
-    <img src="img/ICCD16405947_SABAPUMB1000228836.jpeg" alt="Artwork 2" style="width: 100%; border: 1px solid #ccc;">
-  </div>
+<style>
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .gallery img {
+    width: 100%;
+    border: 1px solid #ccc;
+    display: block;
+  }
+  .gallery-item {
+    flex: 1 1 45%;
+    max-width: 45%;
+  }
 
-  <div style="flex: 1 1 45%; max-width: 45%;">
-    <img src="img/ICCD16336305_Alice Psacaropulo Madonna col Bambino e angeli musicanti 1987 1992.JPG" alt="Artwork 3" style="width: 100%; border: 1px solid #ccc;">
-  </div>
+  @media (max-width: 600px) {
+    .gallery-item {
+      max-width: 100%;
+    }
+  }
+</style>
 
-  <div style="flex: 1 1 45%; max-width: 45%;">
-    <img src="img/ICCD16138372_FMR0415a.jpg" alt="Artwork 4" style="width: 100%; border: 1px solid #ccc;">
+<div class="gallery">
+  <div class="gallery-item">
+    <img src="img/ICCD16406740_MDBS1315.jpeg" alt="Artwork 1">
+  </div>
+  <div class="gallery-item">
+    <img src="img/ICCD16405947_SABAPUMB1000228836.jpeg" alt="Artwork 2">
+  </div>
+  <div class="gallery-item">
+    <img src="img/ICCD16336305_Alice Psacaropulo Madonna col Bambino e angeli musicanti 1987 1992.JPG" alt="Artwork 3">
+  </div>
+  <div class="gallery-item">
+    <img src="img/ICCD16138372_FMR0415a.jpg" alt="Artwork 4">
   </div>
 </div>
-
   <p>
     The SPARQL queries revealed a key limitation: no works were found that had both the <strong>tempera technique</strong> and an explicit subject referencing the Madonna.
     This reflects a <strong>knowledge gap</strong> in the data structure.
