@@ -74,6 +74,7 @@ In this project, I aim to explore how the image of the Virgin Mary is represente
     <img src="ICCD16336305_Alice Psacaropulo Madonna col Bambino e angeli musicanti 1987 1992.JPG" alt="Artwork 4">
   </div>
 </div>
+
 <h2>SPARQL Queries and Results</h2>
 
 <table style="width: 100%; border-collapse: collapse; margin-top: 1em;">
@@ -105,7 +106,8 @@ WHERE {
 </pre>
       </td>
       <td style="border: 1px solid #ccc; padding: 10px;">
-        <p>This query retrieves all artworks in ArCo with subjects related to the Virgin Mary (e.g. “madonna”, “maria”, “vergine”). It returned a list of paintings and their subjects, showing the frequent presence of Marian themes.</p>
+        <p>This query retrieves all artworks with subject labels like "madonna", "maria", or "vergine". It returns several paintings of the Virgin Mary.</p>
+        <p><a href="https://dati.cultura.gov.it/sparql?query=PREFIX+arco%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Farco%2F%3E%0APREFIX+a-cd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fcontext-description%2F%3E%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0A%0ASELECT+DISTINCT+%3Fitem+%3Flabel+%3FsubjectLabel%0AWHERE+%7B%0A++%3Fitem+a+arco%3AHistoricOrArtisticProperty+%3B%0A++++++rdfs%3Alabel+%3Flabel+%3B%0A++++++a-cd%3AhasSubject+%3Fsubject+.%0A++%3Fsubject+rdfs%3Alabel+%3FsubjectLabel+.%0A++FILTER%28LANG%28%3Flabel%29+%3D+%22en%22%29%0A++FILTER%28REGEX%28%3FsubjectLabel%2C+%22madonna%7Cmaria%7Cvergine%22%2C+%22i%22%29%29%0A%7D" target="_blank">View Results</a></p>
       </td>
     </tr>
 
@@ -128,7 +130,8 @@ WHERE {
 </pre>
       </td>
       <td style="border: 1px solid #ccc; padding: 10px;">
-        <p>This query lists all artworks in ArCo where the technique used is tempera. It is used to filter for a specific medium frequently applied in Marian devotional works.</p>
+        <p>This query finds artworks executed in tempera. Several items are returned, confirming that tempera is a common technique in ArCo.</p>
+        <p><a href="https://dati.cultura.gov.it/sparql?query=PREFIX+arco%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Farco%2F%3E%0APREFIX+a-dd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fdenotative-description%2F%3E%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0A%0ASELECT+DISTINCT+%3Fitem+%3Flabel+%3FtechniqueLabel%0AWHERE+%7B%0A++%3Fitem+a+arco%3AHistoricOrArtisticProperty+%3B%0A++++++rdfs%3Alabel+%3Flabel+%3B%0A++++++a-dd%3AhasTechnique+%3Ftechnique+.%0A++%3Ftechnique+rdfs%3Alabel+%3FtechniqueLabel+.%0A++FILTER%28REGEX%28%3FtechniqueLabel%2C+%22tempera%22%2C+%22i%22%29%29%0A%7D" target="_blank">View Results</a></p>
       </td>
     </tr>
 
@@ -150,7 +153,8 @@ WHERE {
 </pre>
       </td>
       <td style="border: 1px solid #ccc; padding: 10px;">
-        <p>This query calculates the total number of artworks executed in tempera technique. The result helps understand how often this medium appears in ArCo metadata.</p>
+        <p>This counts how many artworks in ArCo use tempera. It returns a specific number of items using that technique.</p>
+        <p><a href="https://dati.cultura.gov.it/sparql?query=PREFIX+arco%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Farco%2F%3E%0APREFIX+a-dd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fdenotative-description%2F%3E%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0A%0ASELECT+%28COUNT%28DISTINCT+%3Fitem%29+AS+%3FtemperaCount%29%0AWHERE+%7B%0A++%3Fitem+a+arco%3AHistoricOrArtisticProperty+%3B%0A++++++a-dd%3AhasTechnique+%3Ftechnique+.%0A++%3Ftechnique+rdfs%3Alabel+%3FtechniqueLabel+.%0A++FILTER%28REGEX%28%3FtechniqueLabel%2C+%22tempera%22%2C+%22i%22%29%29%0A%7D" target="_blank">View Results</a></p>
       </td>
     </tr>
 
@@ -177,7 +181,8 @@ WHERE {
 </pre>
       </td>
       <td style="border: 1px solid #ccc; padding: 10px;">
-        <p>This query was designed to identify works that are both made in tempera and thematically related to the Madonna. No results were returned, suggesting that such combined metadata may be incomplete or missing in ArCo.</p>
+        <p>This query combines technique and subject to find works with tempera and Madonna. It returned no results, revealing a gap in ArCo's combined metadata.</p>
+        <p><a href="https://dati.cultura.gov.it/sparql?query=PREFIX+arco%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Farco%2F%3E%0APREFIX+a-dd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fdenotative-description%2F%3E%0APREFIX+a-cd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fcontext-description%2F%3E%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0A%0ASELECT+DISTINCT+%3Fitem+%3Flabel+%3FtechniqueLabel+%3FsubjectLabel%0AWHERE+%7B%0A++%3Fitem+a+arco%3AHistoricOrArtisticProperty+%3B%0A++++++a-dd%3AhasTechnique+%3Ftechnique+%3B%0A++++++a-cd%3AhasSubject+%3Fsubject+%3B%0A++++++rdfs%3Alabel+%3Flabel+.%0A++%3Ftechnique+rdfs%3Alabel+%3FtechniqueLabel+.%0A++%3Fsubject+rdfs%3Alabel+%3FsubjectLabel+.%0A++FILTER%28REGEX%28%3FtechniqueLabel%2C+%22tempera%22%2C+%22i%22%29%29%0A++FILTER%28REGEX%28%3FsubjectLabel%2C+%22madonna%7Cmaria%7Cvergine%22%2C+%22i%22%29%29%0A%7D" target="_blank">View Results</a></p>
       </td>
     </tr>
 
