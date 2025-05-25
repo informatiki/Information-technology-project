@@ -297,6 +297,30 @@ The obtained information was converted into RDF format compatible with ArCo-onto
 <p>
 Thus, we can enhance the ontology by creating new triplets to link the artwork to its exact location, meaning not only the city but also an address.
 </p>
+ <h2>RDF Triplet: Maestà by Duccio di Buoninsegna</h2>
+
+<pre style="background-color: #f8f8f8; border: 1px solid #ccc; padding: 15px; white-space: pre-wrap; font-family: monospace;">
+@prefix ex: &lt;http://example.org/resource/&gt; .
+@prefix arco: &lt;https://w3id.org/arco/ontology/arco/&gt; .
+@prefix a-dd: &lt;https://w3id.org/arco/ontology/denotative-description/&gt; .
+@prefix a-cd: &lt;https://w3id.org/arco/ontology/context-description/&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+
+ex:Maesta_Duccio a arco:HistoricOrArtisticProperty ;
+    rdfs:label "Maestà by Duccio di Buoninsegna"@en ;
+    a-cd:hasSubject ex:VirginMary , ex:ChildJesus ;
+    a-dd:hasTechnique ex:Tempera ;
+    a-dd:hasMaterial ex:Wood , ex:GoldLeaf ;
+    a-cd:hasCulturalFunction "High altar icon for Siena Cathedral"@en ;
+    a-cd:hasIconography ex:MaestaComposition .
+
+ex:Tempera rdfs:label "Tempera"@en .
+ex:Wood rdfs:label "Wood"@en .
+ex:GoldLeaf rdfs:label "Gold Leaf"@en .
+ex:VirginMary rdfs:label "Virgin Mary"@en .
+ex:ChildJesus rdfs:label "Child Jesus"@en .
+ex:MaestaComposition rdfs:label "Maestà Iconography"@en .
+</pre>
   <p><a href="index.html">← Back to homepage</a></p>
 </body>
 </html>
