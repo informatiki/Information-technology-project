@@ -74,12 +74,12 @@ In this project, I aim to explore how the image of the Virgin Mary is represente
     <img src="ICCD16336305_Alice Psacaropulo Madonna col Bambino e angeli musicanti 1987 1992.JPG" alt="Artwork 4">
   </div>
 </div>
-<h2>SPARQL Queries Used in the Project</h2>
+<h2>SPARQL Queries</h2>
 
-<table style="width: 100%; border-collapse: collapse;">
+<table class="table" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse;">
   <tr>
-    <td style="vertical-align: top; padding: 10px;"><strong>1. All objects with subjects containing “madonna”, “maria” or “vergine”</strong></td>
-    <td style="padding: 10px;">
+    <td><strong>Query 1:</strong> All objects with subjects containing “madonna”, “maria” or “vergine”</td>
+    <td>
       <pre><code>
 ?item a arco:HistoricOrArtisticProperty ;
       rdfs:label ?label ;
@@ -91,8 +91,8 @@ FILTER(REGEX(?subjectLabel, "madonna|maria|vergine", "i"))
     </td>
   </tr>
   <tr>
-    <td style="vertical-align: top; padding: 10px;"><strong>2. Objects executed in technique tempera</strong></td>
-    <td style="padding: 10px;">
+    <td><strong>Query 2:</strong> Objects executed in technique tempera</td>
+    <td>
       <pre><code>
 ?item a arco:HistoricOrArtisticProperty ;
       rdfs:label ?label ;
@@ -103,8 +103,8 @@ FILTER(REGEX(?techniqueLabel, "tempera", "i"))
     </td>
   </tr>
   <tr>
-    <td style="vertical-align: top; padding: 10px;"><strong>3. Count of objects executed in technique tempera</strong></td>
-    <td style="padding: 10px;">
+    <td><strong>Query 3:</strong> Count of all objects with technique tempera</td>
+    <td>
       <pre><code>
 SELECT (COUNT(DISTINCT ?item) AS ?temperaCount)
 WHERE {
@@ -117,8 +117,8 @@ WHERE {
     </td>
   </tr>
   <tr>
-    <td style="vertical-align: top; padding: 10px;"><strong>4. Objects with technique tempera and subject related to Madonna</strong></td>
-    <td style="padding: 10px;">
+    <td><strong>Query 4:</strong> Objects with technique tempera and subject Madonna</td>
+    <td>
       <pre><code>
 ?item a arco:HistoricOrArtisticProperty ;
       a-dd:hasTechnique ?technique ;
