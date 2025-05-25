@@ -182,6 +182,7 @@ WHERE {
       </td>
       <td style="border: 1px solid #ccc; padding: 10px;">
         <p>This query combines technique and subject to find works with tempera and Madonna. It returned no results, revealing a gap in ArCo's combined metadata.</p>
+       <br><br>
         <p><a href="https://dati.cultura.gov.it/sparql?query=PREFIX+arco%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Farco%2F%3E%0APREFIX+a-dd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fdenotative-description%2F%3E%0APREFIX+a-cd%3A+%3Chttps%3A%2F%2Fw3id.org%2Farco%2Fontology%2Fcontext-description%2F%3E%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0A%0ASELECT+DISTINCT+%3Fitem+%3Flabel+%3FtechniqueLabel+%3FsubjectLabel%0AWHERE+%7B%0A++%3Fitem+a+arco%3AHistoricOrArtisticProperty+%3B%0A++++++a-dd%3AhasTechnique+%3Ftechnique+%3B%0A++++++a-cd%3AhasSubject+%3Fsubject+%3B%0A++++++rdfs%3Alabel+%3Flabel+.%0A++%3Ftechnique+rdfs%3Alabel+%3FtechniqueLabel+.%0A++%3Fsubject+rdfs%3Alabel+%3FsubjectLabel+.%0A++FILTER%28REGEX%28%3FtechniqueLabel%2C+%22tempera%22%2C+%22i%22%29%29%0A++FILTER%28REGEX%28%3FsubjectLabel%2C+%22madonna%7Cmaria%7Cvergine%22%2C+%22i%22%29%29%0A%7D" target="_blank">View Results</a></p>
       </td>
     </tr>
