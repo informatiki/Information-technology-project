@@ -1,5 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArCo Project Steps</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f8f9fa;
+      padding: 2rem;
+    }
+    .step-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      gap: 1.5rem;
+    }
+    .number {
+      background: #007bff;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .text {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
 <body>
-<p>
-Sonya "Artworks with San Francesco"
-</p?>
-<body>
+  <div class="step-container">
+    <div class="step">
+      <div class="number">1</div>
+      <div class="text">We explored the ArCo knowledge graph and ontologies to find paintings missing.</div>
+    </div>
+    <div class="step">
+      <div class="number">2</div>
+      <div class="text">Using SPARQL, we queried the data to detect these gaps. We then created prompts for an LLM (like ChatGPT) to generate missing information.</div>
+    </div>
+    <div class="step">
+      <div class="number">3</div>
+      <div class="text">The generated answers were transformed into RDF triples, using ArCo’s vocabulary, and saved as .ttl files. All results were validated, cleaned, and published on our website, organized clearly by sections: topic, queries, prompts, triples, etc.</div>
+    </div>
+  </div>
+</body>
+</html>
