@@ -7,16 +7,36 @@
   <style>
     body {
       font-family: sans-serif;
-      background: #f8f9fa;
-      padding: 2rem;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      position: relative;
     }
+
+    /* Фоновое изображение */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('Last_Judgement_(Michelangelo).jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.1; /* Прозрачность */
+      z-index: -1; /* Чтобы фон был позади всего */
+    }
+
     .step-container {
       display: flex;
       flex-direction: column;
       gap: 2rem;
       max-width: 800px;
       margin: auto;
+      padding: 3rem 1rem;
     }
+
     .step {
       display: flex;
       align-items: flex-start;
@@ -26,6 +46,7 @@
       padding: 1.5rem;
       gap: 1.5rem;
     }
+
     .number {
       background: #007bff;
       color: white;
@@ -39,9 +60,23 @@
       justify-content: center;
       flex-shrink: 0;
     }
+
     .text {
       font-size: 1rem;
       line-height: 1.6;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 2rem;
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -60,8 +95,8 @@
       <div class="text">The generated answers were transformed into RDF triples, using ArCo’s vocabulary, and saved as .ttl files. All results were validated, cleaned, and published on our website, organized clearly by sections: topic, queries, prompts, triples, etc.</div>
     </div>
   </div>
-        
-<a href="index.html" class="back-link">&larr; Back to main page</a>
-  
+
+  <a href="index.html" class="back-link">&larr; Back to main page</a>
 </body>
 </html>
+
