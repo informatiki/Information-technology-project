@@ -116,10 +116,10 @@ WHERE {<br>
   {<br>
     ?artwork a-cd:hasSubject ?subject .<br>
     ?subject rdfs:label ?subjectLabel .<br>
-    FILTER(REGEX(?subjectLabel, "Francesco|Francis|Франциск|stigmata|Assisi", "i"))<br>
+    FILTER(REGEX(?subjectLabel, "Francesco|Francis|stigmata|Assisi", "i"))<br>
   } UNION {<br>
     ?artwork rdfs:comment ?comment .<br>
-    FILTER(REGEX(?comment, "Francesco|Francis|Франциск", "i"))<br>
+    FILTER(REGEX(?comment, "Francesco|Francis", "i"))<br>
   }<br>
 }
       </td>
@@ -177,7 +177,7 @@ WHERE {<br>
     ?artworkFrancis a arco:HistoricOrArtisticProperty ;<br>
                     a-cd:hasSubject ?subjectFrancis .<br>
     ?subjectFrancis rdfs:label ?subjectLabelFrancis .<br>
-    FILTER(REGEX(?subjectLabelFrancis, "Francesco|Francis|Франциск|stigmata|Assisi", "i"))<br>
+    FILTER(REGEX(?subjectLabelFrancis, "Francesco|Francis|stigmata|Assisi", "i"))<br>
   }<br>
   UNION<br>
   {<br>
