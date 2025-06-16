@@ -78,9 +78,40 @@
     .back-link:hover {
       text-decoration: underline;
     }
+    nav {
+     background-color: rgba(0, 123, 255, 0.7);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+    }
+
+    nav a {
+      flex: 1;
+      color: #fff;
+      text-align: center;
+      padding: 14px 0;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
   </style>
 </head>
 <body>
+  <nav>
+    <a href="https://informatiki.github.io/Information-technology-project/index.html">Main Page</a>
+    <a href="https://informatiki.github.io/Information-technology-project/madonna.html">Maria Vergine</a>
+    <a href="https://informatiki.github.io/Information-technology-project/san_francesco.html">San Francesco</a>
+    <a href="https://informatiki.github.io/Information-technology-project/maria_maddalena.html">Maria Maddalena</a>
+    <a href="https://informatiki.github.io/Information-technology-project/methodology.html">Methodology</a>
+    <a href="https://informatiki.github.io/Information-technology-project/challengesandresults.html">Challenges and Results</a>
+  </nav>
   <div class="step-container">
     <div class="step">
       <div class="number">1</div>
