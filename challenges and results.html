@@ -39,11 +39,11 @@
       max-width: 800px;
       margin: 0 auto;
       padding: 120px 20px 40px;
-      text-align: center;
     }
 
     h1, h2, h3 {
       font-size: 24px;
+      text-align: center;
       color: #3c3c3c;
       margin-bottom: 1em;
     }
@@ -52,12 +52,16 @@
       line-height: 1.6;
       margin: 1em 0;
       text-align: justify;
+      color: #333;
     }
 
     ul {
-      text-align: left;
       margin: 1em 0 2em;
       padding-left: 1.2em;
+    }
+
+    li {
+      margin-bottom: 0.5em;
     }
 
     a.back-link {
@@ -86,46 +90,46 @@
   <div class="content">
     <h3>Crafting Meaningful SPARQL Queries</h3>
     <p>
-      We began by formulating SPARQL queries to identify artworks associated with each figure...
+      We began by formulating SPARQL queries to identify artworks associated with each figure. Understanding how to access structured data in ArCo and navigate limitations such as missing fields (e.g., subject labels or techniques) was a common difficulty. For example, no artworks with both the technique <em>tempera</em> and the subject <em>Madonna</em> were returned — highlighting structural gaps in the dataset across all three themes.
     </p>
 
     <h3>Connecting Iconography to Metadata</h3>
     <p>
-      Each figure presented unique challenges in modeling their iconography...
+      Each figure presented unique challenges in modeling their iconography. For the Virgin Mary, the variety of titles (Madonna, Maria, Vergine) affected search accuracy. Mary Magdalene was often referenced in scenes with other saints, which complicated subject isolation. Saint Francis required careful attention to distinguishing religious context from artistic technique. Creating additional RDF triples helped clarify and standardize these connections.
     </p>
 
     <h3>Building the Web Pages</h3>
     <p>
-      Each team member designed a page dedicated to one saintly figure...
+      Each team member designed a page dedicated to one saintly figure, ensuring consistency in structure and navigation. We worked together to embed queries, display RDF examples, visualize artworks, and maintain stylistic harmony. Adjustments were made for mobile responsiveness and readability to make the content more accessible.
     </p>
 
     <h3>Working with Large Language Models (LLMs)</h3>
     <p>
-      We applied prompting techniques to compare how AI (e.g., ChatGPT, Gemini) interprets artworks...
+      We applied prompting techniques to compare how AI (e.g., ChatGPT, Gemini) interprets artworks involving the three saints. Each model responded differently to visual, theological, and symbolic prompts. For instance, ChatGPT tended to emphasize narrative symbolism, while Gemini focused more on stylistic and devotional aspects. These comparisons highlighted the potential of LLMs to enrich semantic interpretation of cultural objects.
     </p>
 
     <h2>Lessons Learned</h2>
     <ul>
-      <li>We developed confidence in SPARQL and RDF modeling...</li>
-      <li>We deepened our understanding of religious iconography...</li>
-      <li>We learned to resolve incomplete or inconsistent data...</li>
-      <li>We collaborated on web development and presentation...</li>
+      <li>We developed confidence in SPARQL and RDF modeling across multiple figures and contexts.</li>
+      <li>We deepened our understanding of how religious iconography is semantically encoded.</li>
+      <li>We learned to resolve incomplete or inconsistent data through enrichment with custom triples.</li>
+      <li>We collaborated on web development and content presentation for three parallel subtopics.</li>
     </ul>
 
     <h2>Conclusion</h2>
     <p>
-      Our project showcases how <strong>three iconic religious figures...</strong>
+      Our project showcases how <strong>three iconic religious figures — Virgin Mary, Mary Magdalene, and Saint Francis —</strong> are represented within Italy's cultural heritage using digital methods. Each saint serves as a case study for exploring the intersection of faith, art, and data.
     </p>
     <p>
-      By analyzing gaps in ArCo, modeling missing semantic relationships...
+      By analyzing gaps in ArCo, modeling missing semantic relationships, and engaging with AI models, we contributed new structured knowledge to the cultural graph. This not only enhances machine-readable understanding of these figures, but also fosters a deeper interdisciplinary appreciation.
     </p>
 
     <h2>Future Directions</h2>
     <ul>
       <li>Extend the approach to other saints or lesser-known biblical figures</li>
-      <li>Publish and share RDF data created for reuse</li>
-      <li>Build a visual timeline of artworks</li>
-      <li>Experiment with multilingual prompts and iconographic linking</li>
+      <li>Publish and share RDF data created for reuse by other students or researchers</li>
+      <li>Build a visual timeline of artworks for each figure</li>
+      <li>Experiment further with multilingual prompts and iconographic linking across datasets</li>
     </ul>
   </div>
 </body>
