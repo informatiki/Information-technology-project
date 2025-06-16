@@ -323,15 +323,28 @@ The obtained information was converted into RDF format compatible with ArCo-onto
 <section>
   <h2>Zero-Shot Prompts to LLMs</h2>
 <p>
-    In this section, we explore how zero-shot prompts are used to interact with large language models (LLMs) like GPT.
+    In this section, we explore how zero-shot prompts are used to interact with large language models (LLMs) like GPT and Gemini.
   </p>
  <p><strong>Prompt:</strong><br>
     What is depicted in the painting “Maestà” by Duccio di Buoninsegna?<br>
   </p>
 <p><strong>ChatGPT Response:</strong><br>
-    Positive
   </p>
  <img src="zero-shot gpt.jpg" alt="Artwork 6" style="max-width:100%; border:1px solid #ccc; margin: 10px 0;">
+<p><strong>Gemini Response:</strong><br>
+  </p>
+ <img src="zero shot gemini.jpg" alt="Artwork 7" style="max-width:100%; border:1px solid #ccc; margin: 10px 0;">
+ <h2>Few-Shot Prompts to LLMs</h2>
+<p>
+    We provided few-shot examples to ChatGPT and Gemini to improve response quality.
+  </p>
+<p><strong>ChatGPT:</strong><br>
+  </p>
+ <img src="few shot gpt.jpg" alt="Artwork 8" style="max-width:100%; border:1px solid #ccc; margin: 10px 0;">
+<p><strong>Gemini:</strong><br>
+  </p>
+ <img src="few shot gemini.jpg" alt="Artwork 9" style="max-width:100%; border:1px solid #ccc; margin: 10px 0;">
+
  <h2>RDF Triplet: Maestà by Duccio di Buoninsegna</h2>
 <pre style="background-color: #f8f8f8; border: 1px solid #ccc; padding: 15px; white-space: pre-wrap; font-family: monospace;">
 @prefix ex: &lt;http://example.org/resource/&gt; .
