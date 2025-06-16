@@ -24,6 +24,9 @@
             opacity: 0.2;
             z-index: -1;
         }
+        body {
+  padding-top: 60px;
+        }
         h1 { color: #3c3c3c; }
         .project-description {
             font-style: italic;
@@ -32,9 +35,39 @@
             margin-top: 40px;
             line-height: 1.5;
         }
+        nav {
+  background-color: rgba(0, 0, 128, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+}
+
+nav a {
+  flex: 1;
+  color: #fff;
+  text-align: center;
+  padding: 14px 0;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
     </style>
 </head>
 <body>
+    <nav>
+  <a href="madonna.html">Mariia – Maria Vergine</a>
+  <a href="san_francesco.html">Sofiia – San Francesco</a>
+  <a href="maria_maddalena.html">Milena – Maria Maddalena</a>
+  <a href="methodology.html">Methodology</a>
+  <a href="challengesandresults.html">Challenges and results</a>
+</nav>
     <h1>Representation of Religious Figures in Italian Art: Documentation and Analysis within the ArCo Archive</h1>
     <ul>
         <li><a href="madonna.html">Mariia – Maria Vergine</a></li>
