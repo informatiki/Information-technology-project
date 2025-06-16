@@ -194,8 +194,19 @@ WHERE {
     </td>
   </tr>
   <tr>
+    <th>Answer</th>
+    <th>ChatGPT</th>
+    <th>Gemini</th>
+    <th>DeepSeek</th>
+  </tr>
+  <tr>
+    <td colspan="4"><strong>Chain-of-Thought Prompting Technic</strong><br>
+      Describe the painting of Mary Magdalene, attributed to the school of Guido Reni and created in the second half of the 17th century, including its medium, dimensions, symbolism, and cataloging details step by step.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Answer</strong></td>
     <td>
-      <strong>Answer</strong><br>
       1. Title: Mary Magdalene<br>
       2. Attributed to: School of Guido Reni<br>
       3. Date: 1650–1700 (second half of the 17th century)<br>
@@ -248,7 +259,7 @@ WHERE {
     <th>DeepSeek</th>
   </tr>
   <tr>
-    <td><strong>Question</strong></td>
+    <td><strong>Zero-Shot Prompting Technic</strong></td>
     <td colspan="3">Give me a list of all Italian cities where artworks of Maria Maddalena are currently located.</td>
   </tr>
   <tr>
@@ -313,7 +324,7 @@ WHERE {
     <th>DeepSeek</th>
   </tr>
   <tr>
-    <td><strong>Question</strong></td>
+    <td><strong>Few-Shot Prompting Technic</strong></td>
     <td colspan="3">
       <!DOCTYPE html>
     <html lang="en">
@@ -354,16 +365,35 @@ Museum: Museo di Palazzo Reale
 </table>
   <h2>Semantic Enrichment Using RDF Triples</h2>
 <p>
-Thus, we can enhance the ontology by creating new triplets to link the artwork to its exact location, meaning not only the city but also an address.
+This allowed us to identify the gap and to generate additional triplets for other artworks, further enhancing the ontology.
+This project illustrates the collaboration between knowledge graphs and language models to improve and expand cultural heritage information.
 </p>
 
 <a href="https://github.com/informatiki/Information-technology-project/blob/main/santa_maria_maddalena.ttl" target="_blank">Triplet</a>
 
-<p>
-This allows us to generate additional triplets for other artworks, further enhancing the ontology.
-This project illustrates the collaboration between knowledge graphs and language models to improve and expand cultural heritage information.
-</p>
+<pre><code>@prefix arco: &lt;http://data.cultura.gov.it/ontology/arco/&gt; .
+@prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .
+@prefix schema: &lt;http://schema.org/&gt; .
+@prefix ex: &lt;http://example.org/resource/&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 
+ex:SantaMariaMaddalena_ReniSchool a arco:VisualItem ;
+    dcterms:title "Santa Maria Maddalena"@it ;
+    dcterms:creator ex:GuidoReniSchool ;
+    dcterms:date "1650-1700"^^xsd:string ;
+    arco:hasCurrentLocation ex:GalleriaCorsini_Rome .
+
+ex:GuidoReniSchool a arco:Agent ;
+    dcterms:name "School of Guido Reni"@en .
+
+ex:GalleriaCorsini_Rome a arco:Place ;
+    schema:name "Galleria Corsini"@it ;
+    schema:address [
+        schema:streetAddress "Via della Lungara 10" ;
+        schema:addressLocality "Roma" ;
+        schema:addressCountry "IT"
+    ] .
+</code></pre>
 
   <a href="index.html" class="back-link">&larr; Back to main page</a>
 </body>
