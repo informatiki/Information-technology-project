@@ -354,11 +354,25 @@ WHERE {<br>
   I decided to challenge LLMs using Few-Shot Prompting techniques. I provided few-shot examples to ChatGPT and DeepSeek to get specific information about the picture, the artist, year, medium, subject, and location.
 </p>
 
- <div class=>
-        <img src="FrancisFewShot.jpg" alt="Few Shot Prompt">
-        <img src="FrancisFewShotAnswer.jpg" alt="ChatGPT answer">
-        <img src="Fr.jpg" alt="Deepseek answer">
-    </div>
+<div class="image-column">
+    <img src="FrancisFewShot.jpg" alt="Few Shot Prompt">
+    <img src="FrancisFewShotAnswer.jpg" alt="ChatGPT answer">
+    <img src="Fr.jpg" alt="Deepseek answer">
+</div>
+
+<style>
+    .image-column {
+        display: flex;
+        flex-direction: column;  
+        gap: 10px;              
+        align-items: center;    
+    }
+    .image-column img {
+        width: 300px;          
+        height: auto;         
+        object-fit: cover;   
+    }
+</style>
     
   <p style="margin-top: 20px;">
 Result: ChatGPT gave me wrong information about the location, whereas DeepSeek was correct and precise. I decided to verify the information once again using Zero-Shot Prompt. In this case all of the LLMs were correct.
