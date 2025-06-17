@@ -1,0 +1,20 @@
+@prefix ex: <http://example.org/resource/> .
+@prefix arco: <https://w3id.org/arco/ontology/arco/> .
+@prefix a-dd: <https://w3id.org/arco/ontology/denotative-description/> .
+@prefix a-cd: <https://w3id.org/arco/ontology/context-description/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:Maesta_Duccio a arco:HistoricOrArtisticProperty ;
+    rdfs:label "Maestà by Duccio di Buoninsegna"@en ;
+    a-cd:hasSubject ex:VirginMary , ex:ChildJesus ;
+    a-dd:hasTechnique ex:Tempera ;
+    a-dd:hasMaterial ex:Wood , ex:GoldLeaf ;
+    a-cd:hasCulturalFunction "High altar icon for Siena Cathedral"@en ;
+    a-cd:hasIconography ex:MaestaComposition .
+
+ex:Tempera rdfs:label "Tempera"@en .
+ex:Wood rdfs:label "Wood"@en .
+ex:GoldLeaf rdfs:label "Gold Leaf"@en .
+ex:VirginMary rdfs:label "Virgin Mary"@en .
+ex:ChildJesus rdfs:label "Child Jesus"@en .
+ex:MaestaComposition rdfs:label "Maestà Iconography"@en .
